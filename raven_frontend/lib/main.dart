@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/Pages/signIn.dart';
+import 'package:raven_frontend/Pages/getStarted.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sign in',
-      home: SignIn()
+      home: GetStartedPage()
     );
   }
 }
