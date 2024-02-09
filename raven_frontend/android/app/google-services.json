@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "593714450873",
+    "project_id": "raven-2e2e0",
+    "storage_bucket": "raven-2e2e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593714450873:android:4120f6b896d3ac4cef6668",
+        "android_client_info": {
+          "package_name": "com.example.raven_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf4AOOZnYfCKqh324OCDnPJeHD52eZ4Ls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
