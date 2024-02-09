@@ -6,7 +6,7 @@ import firebase_admin
 class FcmUtils:
     def __init__(self):
         creds = credentials.Certificate(
-            "D:/R.A.V.E.N/R.A.V.E.N/Backend/serviceAccountKey.json"
+            "C:/Users/Aadil Naji/Desktop/ahamed IIT/SDGP/R.A.V.E.N/R.A.V.E.N/Backend/serviceAccountKey.json"
         )
         default_app = firebase_admin.initialize_app(creds)
 
