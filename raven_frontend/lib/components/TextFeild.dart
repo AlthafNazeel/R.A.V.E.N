@@ -24,12 +24,12 @@ final controller;
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(50)
+          borderRadius: BorderRadius.circular(25),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white) 
+          borderSide: BorderSide(color: Colors.black) 
         ),
-        fillColor: Colors.grey.shade200,
+        fillColor: Colors.grey.shade100,
         filled: true,   
         hintText: hinttext,           
         ),
