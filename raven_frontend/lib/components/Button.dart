@@ -26,3 +26,30 @@ class Button extends StatelessWidget {
     );    
   }
 }
+
+
+//  // Welcome message
+//               Text('Welcome back',
+//               style: TextStyle(
+//                 color: Colors.white,
+//                 fontSize: 18,
+//                 ),
+//                 ),
+//                 const SizedBox(height: 10),//space box
+
+              
+//               // Profile text field
+//               TextFeild(
+//                 controller: userNameController,
+//                 hinttext:'Profile' ,
+//                 obscureText: false,
+//               ),
+              
+//               const SizedBox(height: 25),//space box
+
+//               // Device settings text field
+//               TextFeild(
+//                 controller: paswordController,
+//                 hinttext: 'Device Settings',
+//                 obscureText: true,
+//               ),

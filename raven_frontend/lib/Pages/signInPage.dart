@@ -47,7 +47,7 @@ class SignIn extends StatelessWidget {
               // Username text field
               TextFeild(
                 controller: userNameController,
-                hinttext:'Enter Phone NUmber or Email' ,
+                hinttext:'Enter Phone Number or Email' ,
                 obscureText: false,
               ),
               
