@@ -7,7 +7,6 @@ width = 1280
 height = 720
 cam_no = 1
 
-#Sulaiman 
 
 def create_camera(channel):
     rtsp = (

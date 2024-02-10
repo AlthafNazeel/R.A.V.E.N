@@ -1,14 +1,19 @@
 from typing import Any
-from firebase_admin import messaging, credentials
+from firebase_admin import messaging, credentials, storage
 import firebase_admin
+import os
 
 
-class FcmUtils:
+class FirebaseUtils:
     def __init__(self):
-        creds = credentials.Certificate(
-            "D:/R.A.V.E.N/R.A.V.E.N/Backend/serviceAccountKey.json"
+        self.file_path = os.path.dirname(os.path.abspath(__file__))
+
+        self.creds = credentials.Certificate(
+            os.path.join(self.file_path, "serviceAccountKey.json")
         )
-        default_app = firebase_admin.initialize_app(creds)
+        default_app = firebase_admin.initialize_app(
+            self.creds, {"storageBucket": "raven-2e2e0.appspot.com"}
+        )
 
     # send_to_token
     # Send a message to a specific token
@@ -78,3 +83,12 @@ class FcmUtils:
         print(response)
         # Response is a message ID string.
         return response
+
+    def upload_clip(self, path, name):
+        path = os.path.join(self.file_path, path)
+
+        bucket = storage.bucket()  # storage bucket
+        blob = bucket.blob(name)
+        blob.upload_from_filename(path)
+
+        return blob.public_url
