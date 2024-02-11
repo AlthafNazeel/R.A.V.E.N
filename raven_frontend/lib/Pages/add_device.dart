@@ -8,6 +8,26 @@ void main() {
 }
 
 
+MyTextField(String label, String hint){
+  // @override
+  // Widget build(BuildContext context) {
+    return TextField(
+      style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+        labelStyle: TextStyle(color: Colors.white),
+        hintStyle: TextStyle(color: Colors.grey),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
+        ),
+      ),
+    );
+    SizedBox(height: 16);
+  // }
+}
+
+
 class AddDevice extends StatelessWidget {
   const AddDevice({Key? key}) : super(key: key);
 
@@ -47,6 +67,8 @@ class AddDevice extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                // MyTextField('hello','name'),
 
                 TextField(
                   style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
