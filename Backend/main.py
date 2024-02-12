@@ -14,7 +14,7 @@ def main():
 
     CLASSES_LIST = ["non-violent", "violent"]
 
-    MoBiLSTM_model = load_model(os.path.join(file_path, "model.keras"))
+    MoBiLSTM_model = load_model(os.path.join(file_path, "model.h5"))
 
     video_reader = cv2.VideoCapture(0)
 
@@ -53,39 +53,39 @@ def main():
 
         # We Need at Least number of SEQUENCE_LENGTH Frames to perform a prediction.
         # Check if the number of frames in the queue is equal to the fixed sequence length.
-        # if len(frames_queue) == 16:
-        #     # Pass the normalized frames to the model and get the predicted probabilities.
-        #     predicted_labels_probabilities = MoBiLSTM_model.predict(
-        #         np.expand_dims(frames_queue, axis=0)
-        #     )[0]
+        if len(frames_queue) == 16:
+            # Pass the normalized frames to the model and get the predicted probabilities.
+            predicted_labels_probabilities = MoBiLSTM_model.predict(
+                np.expand_dims(frames_queue, axis=0)
+            )[0]
 
-        #     # Get the index of class with the highest probability.
-        #     predicted_label = np.argmax(predicted_labels_probabilities)
+            # Get the index of class with the highest probability.
+            predicted_label = np.argmax(predicted_labels_probabilities)
 
-        #     # Get the class name using the retrieved index.
-        #     predicted_class_name = CLASSES_LIST[predicted_label]
+            # Get the class name using the retrieved index.
+            predicted_class_name = CLASSES_LIST[predicted_label]
 
-        # # Write predicted class name on top of the frame.
-        # if predicted_class_name == "Violence":
-        #     cv2.putText(
-        #         frame,
-        #         predicted_class_name,
-        #         (5, 100),
-        #         cv2.FONT_HERSHEY_SIMPLEX,
-        #         3,
-        #         (0, 0, 255),
-        #         12,
-        #     )
-        # else:
-        #     cv2.putText(
-        #         frame,
-        #         predicted_class_name,
-        #         (5, 100),
-        #         cv2.FONT_HERSHEY_SIMPLEX,
-        #         3,
-        #         (0, 255, 0),
-        #         12,
-        #     )
+        # Write predicted class name on top of the frame.
+        if predicted_class_name == "Violence":
+            cv2.putText(
+                frame,
+                predicted_class_name,
+                (5, 100),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 255),
+                12,
+            )
+        else:
+            cv2.putText(
+                frame,
+                predicted_class_name,
+                (5, 100),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 255, 0),
+                12,
+            )
 
         # Display the frame.
         cv2.imshow("Prediction", frame)
