@@ -28,14 +28,14 @@ class SignIn extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 200),
 
-                // App Logo
-                Icon(
-                  Icons.lock,
-                  size: 100,
-                  color: Color.fromARGB(255, 101, 36, 120),
-                ),
+                // // App Logo
+                // Icon(
+                //   Icons.lock,
+                //   size: 100,
+                //   color: Color.fromARGB(255, 101, 36, 120),
+                // ),
 
                 const SizedBox(height: 30),
 
