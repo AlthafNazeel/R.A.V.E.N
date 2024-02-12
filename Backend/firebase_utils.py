@@ -6,7 +6,6 @@ import os
 
 class FirebaseUtils:
     def __init__(self):
-<<<<<<< HEAD:Backend/firebase_utils.py
         self.file_path = os.path.dirname(os.path.abspath(__file__))
 
         self.creds = credentials.Certificate(
@@ -14,10 +13,6 @@ class FirebaseUtils:
         )
         default_app = firebase_admin.initialize_app(
             self.creds, {"storageBucket": "raven-2e2e0.appspot.com"}
-=======
-        creds = credentials.Certificate(
-            "C:/Users/Aadil Naji/Desktop/ahamed IIT/SDGP/R.A.V.E.N/R.A.V.E.N/Backend/serviceAccountKey.json"
->>>>>>> 764a8d2e5f9d7d57afc85be73d3f720021cd34c0:Backend/fcm_utils.py
         )
 
     # send_to_token
