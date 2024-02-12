@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:raven_frontend/components/TextFeild.dart';
 import 'package:raven_frontend/Pages/getStarted.dart';
 
-class SignIn extends StatelessWidget {
-  SignIn({Key? key}) : super(key: key);
+class SignInp extends StatelessWidget {
+  SignInp({Key? key}) : super(key: key);
 
   final userNameController = TextEditingController();
   final paswordController = TextEditingController();
@@ -11,7 +11,7 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 5, 0, 20),
+      backgroundColor: Color.fromARGB(255, 218, 214, 230),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -36,19 +36,23 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 50),
               
               // Username text field
-              TextFeild(
-                controller: userNameController,
-                hinttext:'Username' ,
-                obscureText: false,
-              ),
+              const SizedBox(height: 20),
+                // Password field
+                CustomTextField(
+                  label: 'Password',
+                  hint: 'Enter your password',
+                  icon: Icons.keyboard,
+                  cursorColor: Colors.black,
+                ),
               
               const SizedBox(height: 25),
               // Password text field
-              TextFeild(
-                controller: paswordController,
-                hinttext: 'Password',
-                obscureText: true,
-              ),
+                CustomTextField(
+                  label: 'Password',
+                  hint: 'Enter your password',
+                  icon: Icons.keyboard,
+                  cursorColor: Colors.black,
+                ),
               
               // Forgot password register
               

@@ -2,6 +2,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Alert(),
+  ));
+}
 class Alert extends StatelessWidget {
   const Alert({Key? key});
 
@@ -51,6 +58,7 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
+
 
   @override
   void initState() {
