@@ -1,37 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/components/AppFonts.dart';
 
-class TextFeild extends StatelessWidget {
-  final controller;
-  final String hinttext;
-  final bool obscureText;
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final String hint;
+  final IconData icon;
+  final Color cursorColor;
 
-  const TextFeild({
-    super.key,
-    required this.controller,
-    required this.hinttext,
-    required this.obscureText,
-  });
+  const CustomTextField({
+    Key? key,
+    required this.label,
+    required this.hint,
+    required this.icon,
+    required this.cursorColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+    return Container(
+      // decoration: BoxDecoration(
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: const Color.fromARGB(79, 0, 0, 0).withOpacity(0.2),
+      //       spreadRadius: 3,
+      //       blurRadius: 10,
+      //       offset: Offset(15, 9),
+      //     ),
+      //   ],
+      // ),
       child: TextField(
-        controller: controller,
-        obscureText: obscureText,
+        cursorColor: cursorColor,
+        style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+          fillColor: Colors.transparent,
+          contentPadding: EdgeInsets.only(left: 25.0),
+          labelText: label,
+          hintText: hint,
+          labelStyle: AppFonts.bodyTextFont(),
+          hintStyle: TextStyle(
+            color: Color.fromARGB(255, 146, 146, 146),
+            fontSize: 14.0,
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+          prefixIcon: Icon(icon, color: cursorColor, size: 18),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0), width: 2),
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+          floatingLabelStyle: TextStyle(
+            color: cursorColor,
+            fontSize: 18.0,
           ),
-          fillColor: Colors.grey.shade100,
-          filled: false, // Set filled to false to remove the background fill
-          hintStyle: TextStyle(color: Colors.white), // Set hint text color
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: cursorColor, width: 1.5),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
         ),
       ),
     );

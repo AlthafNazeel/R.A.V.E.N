@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+void main() {
+  runApp( MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Settings(),
+  ));
+}
 
 class Settings extends StatelessWidget {
   Settings({Key? key}) : super(key: key);
