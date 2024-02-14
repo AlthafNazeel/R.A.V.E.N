@@ -10,7 +10,7 @@ from tensorflow.keras.models import load_model
 
 def main():
     firebase = FirebaseUtils()
-    camera = WebCam()
+    # camera = WebCam()
     file_path = os.path.dirname(os.path.abspath(__file__))
 
     CLASSES_LIST = ["non-violent", "violent"]
@@ -39,6 +39,7 @@ def main():
     while True:
         # Read a frame from the webcam.
         ok, frame = video_reader.read()
+        frame = cv2.flip(frame,1)
 
         if not ok:
             break
@@ -102,16 +103,16 @@ def main():
     video_writer.release()
     cv2.destroyAllWindows()
 
-    # firebase.send_to_token(
-    #     "fjFaquaNRK6w7hSbGnXvbi:APA91bEC6RB6QNcGXpyyo-6m3Is9PVaE3QaxL6onoCWEKVWmVGe-kcZlb0EMB-9-noza-x5up5rCWslx4zHvjYW2XVXDAkpmtejRXeQ9YixLuWfe7S5FHtfdtxvasFrx6NlKEg5VYfSg",
-    #     "Message From Server",
-    #     "Hello There!",
-    #     {
-    #         "videoUrl": "https://storage.googleapis.com/raven-2e2e0.appspot.com/testvideo"
-    #     },
-    # )
-    # link = firebase.upload_clip("testvideo.mp4", "testvideo")
-    # print(link)
+    firebase.send_to_token(
+        "cNbBYeUfRwWODbNTdnkjJE:APA91bEFlgcwEX0NJy0QskDZffVwS1sdrRr6RDPm345_o3VwLtg6C5k6r-QNf9IYtmZU6sbFYNNybGGADEh4izKoTVfAFBKRs-XoAEkvHYf8ks61vvNVqC2a-SkrgdC7pHBppvNn99AP",
+        "Message From Server",
+        "Hello There!",
+        {
+            "videoUrl": "https://storage.googleapis.com/raven-2e2e0.appspot.com/testvideo"
+        },
+    )
+    link = firebase.upload_clip("testvideo.mp4", "testvideo")
+    print(link)
     # messaging = FcmUtils()
     # messaging.send_to_token(
     #     "cNbBYeUfRwWODbNTdnkjJE:APA91bEFlgcwEX0NJy0QskDZffVwS1sdrRr6RDPm345_o3VwLtg6C5k6r-QNf9IYtmZU6sbFYNNybGGADEh4izKoTVfAFBKRs-XoAEkvHYf8ks61vvNVqC2a-SkrgdC7pHBppvNn99AP",
@@ -126,3 +127,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:raven_frontend/Pages/alert.dart';
-// import 'package:raven_frontend/Pages/signIn.dart';
-// import 'package:raven_frontend/Pages/SettingsPage.dart';
+import 'package:raven_frontend/Pages/getStarted.dart';
 import 'package:raven_frontend/Pages/signInPage.dart';
+import 'package:raven_frontend/Pages/homePage.dart';
+import 'package:raven_frontend/Pages/add_device.dart';
+import 'package:raven_frontend/Pages/SettingsPage.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/firebase_options.dart';
 
@@ -28,9 +30,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: GetStartedPage(),
       navigatorKey: navigatorKey,
-      routes: {'/notification_screen': (context) => const Alert()},
+      routes: {
+        '/notification_screen': (context) => const Alert(),
+        '/SettingsPage': (context) =>  Settings(),
+        '/signInPage': (context) =>  SignIn(),
+        '/homePage': (context) =>  HomePage(),
+        '/add_device': (context) => const AddDevice(),
+        '/GetStartedPage': (context) => const AddDevice()
+       
+      },
     );
   }
 }
