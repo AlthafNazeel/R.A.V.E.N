@@ -12,7 +12,6 @@ import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/firebase_options.dart';
 
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
