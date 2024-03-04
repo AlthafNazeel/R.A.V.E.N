@@ -7,6 +7,7 @@ import 'package:raven_frontend/Pages/signInPage.dart';
 import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/add_device.dart';
 import 'package:raven_frontend/Pages/SettingsPage.dart';
+import 'package:raven_frontend/Pages/Notifications.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/firebase_options.dart';
 
@@ -38,8 +39,8 @@ class MyApp extends StatelessWidget {
         '/signInPage': (context) =>  SignIn(),
         '/homePage': (context) =>  HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => const AddDevice()
-       
+        '/GetStartedPage': (context) => GetStartedPage(),
+        '/Notifications': (context) => NotificationsPage(),
       },
     );
   }

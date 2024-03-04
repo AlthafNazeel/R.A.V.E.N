@@ -27,7 +27,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
     setState(() {
       selectedFilter = filter;
     });
-    // Implement your filtering logic here based on the selected filter
   }
 
   @override
@@ -46,7 +45,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         leading: IconButton(
           icon: Icon(Icons.menu, color: Colors.white),
           onPressed: (){
-            // code to open menu
+            Navigator.pushNamed(context, '/homePage');
           },
         ),
       ),
