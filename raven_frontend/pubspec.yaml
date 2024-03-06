@@ -67,7 +67,9 @@ flutter:
       - images/bgpic.jpg  
       - images/bgpic2.jpg
       - images/bgpicnew.jpg
-  #   - images/a_dot_ham.jpeg
+      - images/getstarted bg.jpg
+      
+ #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
