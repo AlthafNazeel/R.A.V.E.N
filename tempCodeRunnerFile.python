@@ -1,0 +1,116 @@
+#initialize variable
+list1 = [0, 20, 40, 60, 80, 100, 120]
+progress = 0
+trailer = 0
+retriever = 0
+excluded = 0
+totaloutcomes = 0
+outcome = ""
+cpass = 0
+cdefer = 0
+cfail = 0
+repeat = ""
+toprint = ""
+passlist = []
+deferlist = []
+faillist = []
+outcomelist = []
+
+# Printing outcome using a user-defined function
+def outcomes_2(statement):
+    outcome = statement
+    print(statement)
+    outcomelist.append(outcome)  
+
+def calculate_output():
+    global progress, trailer, retriever, excluded, totaloutcomes
+    
+    if cpass == 120:
+        outcomes_2("progress")
+        progress += 1
+        
+    elif cpass == 100:
+        outcomes_2("Progress (module trailer)")
+        trailer += 1
+        
+    elif cfail in [80, 100, 120]:
+        outcomes_2("exclude")
+        excluded += 1
+
+    else:
+        outcomes_2("Module retriever")
+        retriever += 1
+    
+    # Adding total outcomes   
+    totaloutcomes = progress + trailer + retriever + excluded
+
+def histogram():
+    print('\n--------------------- HISTOGRAM -------------------------------\n')
+    print('Progress', progress, '  :', '*' * progress)
+    print('Trailer', trailer, '   :', '*' * trailer)
+    print('Retriever', retriever, ' :', '*' * retriever)
+    print('Exclude', excluded, '   :', '*' * excluded,"\n")
+    print(totaloutcomes, " outcome's in total")
+
+def print_list():
+    print('\n------------------- LIST -----------------------------------\nPart 2:')
+    for count in range(totaloutcomes):
+        print(outcomelist[count],' - ',passlist[count],',',deferlist[count],',',faillist[count])
+
+        # Data into text file
+        toprint = str(outcomelist[count]) + ' - ' + str(passlist[count]) + ',' + str(deferlist[count]) + ',' + str(faillist[count])
+        with open("ListInTextFile.txt", "a") as f:
+            f.write("\n" + toprint)
+
+def open_file():
+    print("\npart 3")
+    with open("ListInTextFile.txt", "r") as f:
+        print(f.read())
+
+def validate_input(prompt):
+    while True:
+        try:
+            user_input = int(input(prompt))
+            if user_input in list1:
+                return user_input
+            else:
+                print("Out of range.\nRange should be (0, 20, 40, 60, 80, 100, 120)\n")
+        except ValueError:
+            print("Integer required.")
+
+def get_input():
+    global cpass, cdefer, cfail
+    cpass = validate_input("\nEnter your total PASS credits: ")
+    cdefer = validate_input("Enter your total DEFER credits : ")
+    cfail = validate_input("Enter your total FAIL credits: ")
+
+def main():
+    global repeat
+    while True:
+        get_input()
+        total = cpass + cdefer + cfail
+        if total != 120:
+            print("\nTotal incorrect. Total should be 120. try again...\n")     
+            continue
+        else:
+            calculate_output()
+            passlist.append(cpass)
+            deferlist.append(cdefer)
+            faillist.append(cfail)
+            break
+
+    while True:
+        repeat = input('\nWould you like to enter another set of data?\nEnter "y" for yes or "q" to quit and view results: ')
+        if repeat not in ["y", "Y", "q", "Q"]:
+            print('\nWrong input Please Enter "y" or "q".')
+            continue
+        elif repeat in ["y", "Y"]:
+            main()
+        else:
+            histogram()
+            print_list()
+            open_file()
+            break
+
+if __name__ == "__main__":
+    main()

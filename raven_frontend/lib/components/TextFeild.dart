@@ -42,16 +42,16 @@ class CustomTextField extends StatelessWidget {
             fontSize: 14.0,
           ),
           prefixIcon: Icon(icon, color: cursorColor, size: 18),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: const Color.fromARGB(255, 0, 0, 0), width: 2),
-            borderRadius: BorderRadius.circular(10.0),
+          enabledBorder: UnderlineInputBorder(
+            borderSide : BorderSide (color: const Color.fromARGB(255, 0, 0, 0), width: 2),
+            // borderRadius: BorderRadius.circular(1.0),
           ),
           floatingLabelStyle: TextStyle(
             color: cursorColor,
             fontSize: 18.0,
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: cursorColor, width: 1.5),
+            borderSide: BorderSide(color: cursorColor, width: 2.0),
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),

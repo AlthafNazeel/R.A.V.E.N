@@ -37,6 +37,9 @@ dependencies:
   firebase_messaging: ^14.7.14
   firebase_core: ^2.25.3
   video_player: ^2.4.1
+  # pie chart
+  pie_chart: ^5.1.0
+
 
 dev_dependencies:
   flutter_test:
