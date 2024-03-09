@@ -1,7 +1,8 @@
 from typing import Any
-from firebase_admin import messaging, credentials, storage
+from firebase_admin import messaging, credentials, storage, firestore
 import firebase_admin
 import os
+from datetime import datetime
 
 
 class FirebaseUtils:
@@ -15,15 +16,8 @@ class FirebaseUtils:
             self.creds, {"storageBucket": "raven-2e2e0.appspot.com"}
         )
 
-    # send_to_token
-    # Send a message to a specific token
-    # registration_token: The token to send the message to
-    # data: The data to send to the token
-    # {
-    #   'score': '850',
-    #   'time': '2:45',
-    # },
-    # example
+        self.db = firestore.client()
+
     def send_to_token(self, registration_token, title, body, data=None) -> Any:
         message = messaging.Message(
             notification=messaging.Notification(
@@ -35,16 +29,12 @@ class FirebaseUtils:
         )
         response = messaging.send(message)
         print(response)
+
+        self.update_database(title, body)
+
         return response
 
-    # send_to_token_multicast
-    # Send a message to a specific tokens
-    # registration_tokens: The tokens to send the message to
-    # data: The data to send to the tokens
-    def send_to_token_multicast(
-        self, registration_tokens, title, body, data=None
-    ) -> Any:
-        # registration_tokens has to be a list
+    def send_to_token_multicast(self, registration_tokens, title, body, data=None):
         assert isinstance(registration_tokens, list)
 
         message = messaging.MulticastMessage(
@@ -57,19 +47,8 @@ class FirebaseUtils:
         )
         response = messaging.send_multicast(message)
         print(response)
-        # See the BatchResponse reference documentation
-        # for the contents of response.
         return response
 
-    # send_to_topic
-    # Send a message to a topic
-    # topic: The topic to send the message to
-    # data: The data to send to the topic
-    # {
-    #   'score': '850',
-    #   'time': '2:45',
-    # },
-    # example
     def send_to_topic(self, topic, title, body, data=None) -> Any:
         message = messaging.Message(
             notification=messaging.Notification(
@@ -81,14 +60,17 @@ class FirebaseUtils:
         )
         response = messaging.send(message)
         print(response)
-        # Response is a message ID string.
         return response
 
     def upload_clip(self, path, name):
         path = os.path.join(self.file_path, path)
 
-        bucket = storage.bucket()  # storage bucket
+        bucket = storage.bucket()
         blob = bucket.blob(name)
         blob.upload_from_filename(path)
 
         return blob.public_url
+
+    def update_database(self, title, body):
+        doc_ref = self.db.collection("Notifications").document()
+        doc_ref.set({"subtitle": title, "time": datetime.now(), "title": body})
