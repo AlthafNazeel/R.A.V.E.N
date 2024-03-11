@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class FirebaseUtils:
-    def __init__(self):
+    def __init__(self, ID):
         self.file_path = os.path.dirname(os.path.abspath(__file__))
 
         self.creds = credentials.Certificate(
@@ -17,6 +17,7 @@ class FirebaseUtils:
         )
 
         self.db = firestore.client()
+        self.serverID = ID
 
     def send_to_token(self, registration_token, title, body, data=None) -> Any:
         message = messaging.Message(
@@ -73,4 +74,20 @@ class FirebaseUtils:
 
     def update_database(self, title, body):
         doc_ref = self.db.collection("Notifications").document()
-        doc_ref.set({"subtitle": title, "time": datetime.now(), "title": body})
+        doc_ref.set(
+            {
+                "subtitle": title,
+                "time": datetime.now(),
+                "title": body,
+                "serverID": self.serverID,
+            }
+        )
+
+    def get_devices(self):
+        document = self.db.collection("Servers").document(self.serverID)
+
+        doc_snapshot = document.get()
+
+        if doc_snapshot.exists:
+            document_data = doc_snapshot.to_dict()
+            print(document_data["tokenIDs"])

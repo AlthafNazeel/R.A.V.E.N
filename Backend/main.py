@@ -7,7 +7,7 @@ import cv2
 
 
 def main():
-    firebase = FirebaseUtils()
+    firebase = FirebaseUtils("ADiWRUE96Mjyzgx41HHh")
     camera = WebCam()
     # model = DetectionModel()
 
@@ -53,7 +53,8 @@ def main():
     #     {"videoUrl": link},
     # )
 
-    firebase.update_database("Camera 03", "Fall Detected!")
+    # firebase.update_database("Camera 03", "Fall Detected!")
+    firebase.get_devices()
 
 
 if __name__ == "__main__":
