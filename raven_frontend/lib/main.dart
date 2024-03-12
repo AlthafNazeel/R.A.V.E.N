@@ -1,5 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/Pages/getStarted.dart';
+
 import 'package:flutter/rendering.dart';
 import 'package:raven_frontend/Pages/alert.dart';
 import 'package:raven_frontend/Pages/getStarted.dart';
@@ -7,25 +8,18 @@ import 'package:raven_frontend/Pages/signInPage.dart';
 import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/add_device.dart';
 import 'package:raven_frontend/Pages/SettingsPage.dart';
+import 'package:raven_frontend/Pages/Notifications.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/firebase_options.dart';
 
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseApi().initNotification();
-  debugPaintSizeEnabled = false; // Disable debug paint overlay
-  runApp(const MyApp());
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,8 +32,8 @@ class MyApp extends StatelessWidget {
         '/signInPage': (context) =>  SignIn(),
         '/homePage': (context) =>  HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => const AddDevice()
-       
+        '/GetStartedPage': (context) => GetStartedPage(),
+        '/Notifications': (context) => NotificationsPage(),
       },
     );
   }
