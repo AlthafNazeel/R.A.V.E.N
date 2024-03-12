@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/Pages/getStarted.dart';
-
 import 'package:flutter/rendering.dart';
 import 'package:raven_frontend/Pages/alert.dart';
-import 'package:raven_frontend/Pages/getStarted.dart';
 import 'package:raven_frontend/Pages/signInPage.dart';
 import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/add_device.dart';

@@ -161,7 +161,7 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/add_device');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 101, 36, 120), // Set the button color
+                  backgroundColor:Color.fromARGB(255, 101, 36, 120), // Set the button color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // Set the border radius
                   ),
