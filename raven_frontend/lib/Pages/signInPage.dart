@@ -24,20 +24,12 @@ class SignIn extends StatelessWidget {
         child: Center(
           child: Padding(
             padding:
-                const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 10.0),
+                const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 200),
+                const SizedBox(height: 150),
 
-                // // App Logo
-                // Icon(
-                //   Icons.lock,
-                //   size: 100,
-                //   color: Color.fromARGB(255, 101, 36, 120),
-                // ),
-
-                const SizedBox(height: 30),
 
                 // Welcome message
                 Row(
@@ -59,7 +51,7 @@ class SignIn extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 100),
 
                 // Email text field
                 CustomTextField(
@@ -69,7 +61,8 @@ class SignIn extends StatelessWidget {
                   cursorColor: Colors.black,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 30), 
+
                 // Password field
                 CustomTextField(
                   label: 'Password',
@@ -87,32 +80,42 @@ class SignIn extends StatelessWidget {
                       'Forgot Password?',
                       style: TextStyle(
                         color: Color.fromARGB(255, 88, 88, 88),
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 20),
-                // Sign In button
-                Container(
-                  // width: 250,
-                  padding: EdgeInsets.symmetric(
+                const SizedBox(height: 50),
+
+                // Sign In button               
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the next page
+                    Navigator.pushNamed(
+                      context,'/homePage'
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 70,
-                      vertical: 8), // Adjust the values as needed
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 101, 36, 120),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Sign in',
-                      style: AppFonts.ButtonFont(),
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 101, 36, 120),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Sign in',
+                        style: AppFonts.ButtonFont(),
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 15),
+
                 // OR separator
                 Text(
                   '-- or --',
@@ -131,28 +134,14 @@ class SignIn extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
+
+
                 Expanded(
                   child: SizedBox(), // Takes up remaining space
                 ),
+                
                 // Register link
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Don\'t have an account?',
-                        style: AppFonts.bodyTextFont()),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 30, 76, 114),
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+
               ],
             ),
           ),

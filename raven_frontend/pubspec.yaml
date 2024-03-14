@@ -35,9 +35,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_messaging: ^14.7.14
-  firebase_core: ^2.26.0
-  video_player: ^2.4.1
-  cloud_firestore: ^4.15.7
+  firebase_core: ^2.25.3
+  video_player: ^2.8.3
+  # pie chart
+  pie_chart: ^5.1.0
+  cloud_firestore: ^4.15.8
+
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +68,9 @@ flutter:
       - images/bgpic.jpg  
       - images/bgpic2.jpg
       - images/bgpicnew.jpg
-  #   - images/a_dot_ham.jpeg
+      - images/getstarted bg.jpg
+      
+ #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -9,8 +9,8 @@ void main() {
 class Settings extends StatelessWidget {
   Settings({Key? key}) : super(key: key);
 
-  final userNameController = TextEditingController();
-  final paswordController = TextEditingController();
+  // final userNameController = TextEditingController();
+  // final paswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,10 @@ class Settings extends StatelessWidget {
         // ),
         leading: IconButton (
             icon: const Icon(Icons.arrow_back_ios),
-            onPressed: (){},
+            onPressed:(){
+              Navigator.pushNamed(context,'/homePage'
+              );
+            },
             ),
             
         centerTitle: true,

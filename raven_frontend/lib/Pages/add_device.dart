@@ -46,8 +46,9 @@ class AddDevice extends StatelessWidget {
             )), // Center the title
         leading: BackButton(
           onPressed: () {
-            // Handle back navigation
-          },
+          // Navigate back to the home page
+          Navigator.pushNamed(context, '/homePage');
+        },
         ),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Color.fromARGB(255, 41, 29, 46),
