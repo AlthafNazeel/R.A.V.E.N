@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+
 void main() {
   runApp(MyApp());
 }
@@ -56,6 +58,93 @@ class _NotificationsPageState extends State<NotificationsPage> {
             ),
           ),
           // Notification tiles for each notification
+
+
+//           StreamBuilder<QuerySnapshot>(
+//   stream: FirebaseFirestore.instance
+//       .collection('your_collection_name') // Replace with your collection name
+//       .snapshots(),
+//   builder: (context, snapshot) {
+//     if (snapshot.hasError) {
+//       return Center(child: Text('Error fetching notifications'));
+//     }
+
+//     if (snapshot.connectionState == ConnectionState.waiting) {
+//       return Center(child: CircularProgressIndicator());
+//     }
+
+//     final notifications = snapshot.data!.docs; // List of documents
+
+//     return ListView.builder(
+//       itemCount: notifications.length,
+//       itemBuilder: (context, index) {
+        
+//         final notificationData = notifications[index].data();
+//         final title = notificationData['title'] as String;
+//         final subtitle = notificationData['subtitle'] as String;
+//         final time = notificationData['time'] as String;
+//         final isRead = notificationData['isRead'] as bool;
+
+//         return NotificationTile(
+//           key: UniqueKey(),
+//           title: title,
+//           subtitle: subtitle,
+//           time: time,
+//           isRead: isRead,
+//           onTap: () {}, // Handle tile tap if needed
+//         );
+//       },
+//     );
+//   },
+// ),
+
+// StreamBuilder<QuerySnapshot>(
+//         stream: FirebaseFirestore.instance
+//             .collection('Notifications') // Replace with your collection name
+//             .snapshots(),
+//         builder: (context, snapshot) {
+//           if (snapshot.hasError) {
+//             return Center(child: Text('Error fetching notifications'));
+//           }
+
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return Center(child: CircularProgressIndicator());
+//           }
+
+//           final notifications = snapshot.data!.docs; // List of documents
+
+//           return ListView.builder(
+//             itemCount: notifications.length,
+//             itemBuilder: (context, index) {
+//               final notificationData = notifications[index].data(); // Using null-aware operator
+
+//               // Safely access notification data using null-aware operator (?)
+//               final title = notificationData?['title'] as String?;
+//               final subtitle = notificationData?['subtitle'] as String?;
+//               final time = notificationData?['time'] as String?;
+//               final isRead = notificationData?['isRead'] as bool?;
+
+//               if (title != null && subtitle != null && time != null && isRead != null) {
+//                 // Use the retrieved data to build NotificationTile widgets
+//                 return NotificationTile(
+//                   key: UniqueKey(),
+//                   title: title,
+//                   subtitle: subtitle,
+//                   time: time,
+//                   isRead: isRead,
+//                   onTap: () {}, // Handle tile tap if needed
+//                 );
+//               } else {
+//                 // Handle the case where some data is missing
+//                 return Text('Missing notification data');
+//               }
+//             },
+//           );
+//         },
+//       ),
+
+        
+
           NotificationTile(
             key: UniqueKey(),
             title: 'Motion detected',
@@ -88,6 +177,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             isRead: false,
             onTap: () {},
           ),
+
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 17),
             child: Text(
@@ -95,6 +185,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+
           NotificationTile(
             key: UniqueKey(),
             title: 'Motion detected',
