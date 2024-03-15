@@ -56,7 +56,7 @@ class GetStartedPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary:
+                  backgroundColor: 
                       Colors.blue, // Replace with your desired button color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
