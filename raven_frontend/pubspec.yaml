@@ -36,9 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_messaging: ^14.7.14
   firebase_core: ^2.25.3
-  video_player: ^2.4.1
+  video_player: ^2.8.3
   # pie chart
   pie_chart: ^5.1.0
+  cloud_firestore: ^4.15.8
 
 
 dev_dependencies:
