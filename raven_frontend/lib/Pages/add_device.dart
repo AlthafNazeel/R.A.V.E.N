@@ -41,7 +41,7 @@ class AddDevice extends StatelessWidget {
       appBar: AppBar(
         title: Center(
           child: Text(
-            'ADD DEVICE         ',
+            'ADD SERVER         ',
             style: TextStyle(color: Colors.white),
             )), // Center the title
         leading: BackButton(
@@ -74,21 +74,7 @@ class AddDevice extends StatelessWidget {
                 TextField(
                   style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
                   decoration: InputDecoration(
-                    labelText: 'Adding Type',
-                    labelStyle: TextStyle(color: Colors.white),
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16),
-
-                TextField(
-                  style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)), // Set text color to offwhite
-                  decoration: InputDecoration(
-                    labelText: 'Alias',
-                    hintText: 'Enter the alias',
+                    labelText: 'Server ID',           // change this field to unchangable
                     labelStyle: TextStyle(color: Colors.white),
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
@@ -101,22 +87,8 @@ class AddDevice extends StatelessWidget {
                 TextField(
                   style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
                   decoration: InputDecoration(
-                    labelText: 'Address',
-                    hintText: 'Enter the Address',
-                    labelStyle: TextStyle(color: Colors.white),
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16),
-
-                TextField(
-                  style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
-                  decoration: InputDecoration(
-                    labelText: 'Port',
-                    hintText: 'Enter the port',
+                    labelText: 'Alertspace Name',
+                    hintText: 'Enter the desired Alertspace Name',
                     labelStyle: TextStyle(color: Colors.white),
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
@@ -141,11 +113,10 @@ class AddDevice extends StatelessWidget {
                 SizedBox(height: 16),
 
                 TextField(
-                  style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
-                  obscureText: true, // This hides the entered text for password fields
+                  style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)), // Set text color to offwhite
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    hintText: 'Enter your password',
+                    hintText: 'Enter the Password',
                     labelStyle: TextStyle(color: Colors.white),
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
@@ -154,20 +125,6 @@ class AddDevice extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16),
-
-                TextField(
-                  style: TextStyle(color: const Color.fromARGB(255, 209, 209, 209)),
-                  decoration: InputDecoration(
-                    labelText: 'Camera No.',
-                    hintText: 'Enter the Camera No.',
-                    labelStyle: TextStyle(color: Colors.white),
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                SizedBox(height: 60),
                 
                 ElevatedButton(
                   onPressed: () {
