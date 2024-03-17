@@ -30,7 +30,7 @@ class GetStartedPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'raven_frontend/images/ravenLogo.png',
+                'images/RAVEN_LOGO.png',
                 height: 100,
                 width: 100,
               ),
