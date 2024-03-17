@@ -34,31 +34,131 @@ class _VideoAppState extends State<VideoApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Video Demo',
       home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
+        appBar: AppBar(
+          title: Text('Video Preview'),
+          centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
+        body: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (_controller.value.isPlaying) {
+                    _controller.pause();
+                  } else {
+                    _controller.play();
+                  }
+                });
+              },
+              child: Container(
+                width: 300, // Adjust the width of the container
+                height: 200, // Adjust the height of the container
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16.0), // Border radius
+                ),
+                child: Stack(
+                  // Stack to overlay text over the video
+                  children: [
+                    ClipRRect(
+                      // Clip the VideoPlayer with BorderRadius
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: _controller.value.isInitialized
+                          ? FittedBox(
+                              fit: BoxFit
+                                  .contain, // Maintain aspect ratio of the original video
+                              child: SizedBox(
+                                width: _controller.value.size?.width ?? 0,
+                                height: _controller.value.size?.height ?? 0,
+                                child: VideoPlayer(_controller),
+                              ),
+                            )
+                          : CircularProgressIndicator(),
+                    ),
+                    Positioned(
+                      // Positioned widget to place the text at a specific position
+                      top: 5,
+                      right: 10,
+                      bottom: 0,
+                      child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              borderRadius: BorderRadius.circular(
+                                  10.0), // Border radius for the container
+                            ),
+                            child: const Text(
+                              'Camera 03',
+                              style: TextStyle(
+                                backgroundColor: Colors.purple,
+                                color: Colors.white,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your button action here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors
+                          .red, // Change the background color of the button
+                    ),
+                    child: Text('Send Alert',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  SizedBox(
+                      width: 16), // Adjust spacing between buttons if needed
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your button action here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors
+                          .green, // Change the background color of the button
+                    ),
+                    child: Text(
+                      'Ignore',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+
+  // Widget _buildPlayPauseButton() {
+  //   return FloatingActionButton(
+  //     onPressed: () {
+  //       setState(() {
+  //         _controller.value.isPlaying
+  //             ? _controller.pause()
+  //             : _controller.play();
+  //       });
+  //     },
+  //     child: Icon(
+  //       _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+  //     ),
+  //   );
+  // }
 
   @override
   void dispose() {

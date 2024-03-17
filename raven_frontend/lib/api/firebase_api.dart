@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:raven_frontend/main.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseApi {
   final _firebaseMessaging = FirebaseMessaging.instance;
   final db = FirebaseFirestore.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
 
   var fCMToken;
 
@@ -67,6 +69,27 @@ class FirebaseApi {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Notifications")
           .where("serverID", isEqualTo: serverID)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        return querySnapshot.docs.map((doc) => doc.data()).toList();
+      } else {
+        print("No documents found with serverID: $serverID");
+        return [];
+      }
+    } catch (error) {
+      print('Error getting notification data: $error');
+      return [];
+    }
+  }
+
+  Future<List<dynamic>> getNotificationCount(
+      String serverID, int priority) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection("Notifications")
+          .where("serverID", isEqualTo: serverID)
+          .where("priority", isEqualTo: priority)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
