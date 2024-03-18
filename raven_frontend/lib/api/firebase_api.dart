@@ -22,7 +22,7 @@ class FirebaseApi {
     // });
 
     // addSystem("ADiWRUE96Mjyzgx41HHh", "dsadsa");
-    print(getNotificationData("ADiWRUE96Mjyzgx41HHh"));
+    // print(getNotificationData("ADiWRUE96Mjyzgx41HHh"));
 
     initPushNotifications();
   }
@@ -65,7 +65,8 @@ class FirebaseApi {
   Future<List<dynamic>> getNotificationData(String serverID) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection("Notifications")
+          // .collection("Notifications")
+          .collection("NewNotifications") 
           .where("serverID", isEqualTo: serverID)
           .get();
 
@@ -80,4 +81,26 @@ class FirebaseApi {
       return [];
     }
   }
+
+Future<void> updateNotificationReadStatus({
+    required String notificationId,
+    required bool isRead,
+  }) async {
+    try {
+      // Reference the document containing the notification data
+      final docRef = FirebaseFirestore.instance.collection('NewNotifications').doc(notificationId);
+
+      // Update the 'isRead' field
+      await docRef.update({
+        'isRead': isRead,
+      });
+    } catch (error) {
+      // Handle errors during update
+      print('Error updating isRead: $error');
+      // Consider providing user feedback
+    }
+  }
+
+
 }
+
