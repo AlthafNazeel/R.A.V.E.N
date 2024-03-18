@@ -70,6 +70,7 @@ flutter:
       - images/bgpicnew.jpg
       - images/getstarted bg.jpg
       - images/RAVEN_LOGO.png
+      - raven_frontend/images/onboarding/
       
  #   - images/a_dot_ham.jpeg
 
