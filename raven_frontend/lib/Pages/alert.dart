@@ -7,11 +7,13 @@ void main() {
   //   debugShowCheckedModeBanner: false,
   //   home: Alert(),
   // ));
-  runApp(const VideoApp());
+  runApp(const Alert());
 }
 
 class VideoApp extends StatefulWidget {
-  const VideoApp({super.key});
+  final String videoUrl;
+
+  const VideoApp({Key? key, required this.videoUrl}) : super(key: key);
 
   @override
   _VideoAppState createState() => _VideoAppState();
@@ -23,10 +25,8 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://firebasestorage.googleapis.com/v0/b/raven-2e2e0.appspot.com/o/testvideo?alt=media&token=fabed883-e0cd-42aa-a73c-f17fa949954d'))
+    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
       ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
       });
   }
@@ -37,10 +37,10 @@ class _VideoAppState extends State<VideoApp> {
       debugShowCheckedModeBanner: false,
       title: 'Video Demo',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Video Preview'),
-          centerTitle: true,
-        ),
+        // appBar: AppBar(
+        //   title: Text('Video Preview'),
+        //   centerTitle: true,
+        // ),
         body: Column(
           children: [
             GestureDetector(
@@ -145,21 +145,6 @@ class _VideoAppState extends State<VideoApp> {
     );
   }
 
-  // Widget _buildPlayPauseButton() {
-  //   return FloatingActionButton(
-  //     onPressed: () {
-  //       setState(() {
-  //         _controller.value.isPlaying
-  //             ? _controller.pause()
-  //             : _controller.play();
-  //       });
-  //     },
-  //     child: Icon(
-  //       _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-  //     ),
-  //   );
-  // }
-
   @override
   void dispose() {
     super.dispose();
@@ -167,24 +152,25 @@ class _VideoAppState extends State<VideoApp> {
   }
 }
 
+class Alert extends StatelessWidget {
+  const Alert({Key? key});
 
-// class Alert extends StatelessWidget {
-//   const Alert({Key? key});
+  @override
+  Widget build(BuildContext context) {
+    final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
+    final videoUrl = message.data['videoUrl'] as String;
 
-//     return Scaffold(
-//       appBar: AppBar(title: Text("Alerts")),
-//       body: Column(
-//         children: [
-//           Text(message.notification!.title.toString()),
-//           Text(message.notification!.body.toString()),
-//           Text(message.data.toString()),
-//           // message.data['videoUrl'];
-//         ],
-//       ),
-//     );
-//   }
-// }
+    return Scaffold(
+      appBar: AppBar(title: Text("Alerts")),
+      body: Column(
+        children: [
+          Text(message.notification!.title.toString()),
+          Text(message.notification!.body.toString()),
+          Text(message.data.toString()),
+          VideoApp(videoUrl: videoUrl),
+        ],
+      ),
+    );
+  }
+}

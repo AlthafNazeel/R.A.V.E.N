@@ -17,15 +17,6 @@ class FirebaseApi {
 
     print("Token $fCMToken");
 
-    // await db.collection("Notifications").get().then((event) {
-    //   for (var doc in event.docs) {
-    //     print("${doc.id} => ${doc.data()}");
-    //   }
-    // });
-
-    // addSystem("ADiWRUE96Mjyzgx41HHh", "dsadsa");
-    print(getNotificationData("ADiWRUE96Mjyzgx41HHh"));
-
     initPushNotifications();
   }
 

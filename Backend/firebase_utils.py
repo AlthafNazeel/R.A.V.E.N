@@ -31,7 +31,7 @@ class FirebaseUtils:
         )
         response = messaging.send(message)
 
-        self.update_database(title, body, priority)
+        # self.update_database(title, body, priority, data[0])
 
         return response
 
@@ -70,9 +70,13 @@ class FirebaseUtils:
         blob = bucket.blob(name)
         blob.upload_from_filename(path)
 
+        # Set ACL to public-read
+        blob.acl.all().grant_read()
+        blob.acl.save()
+
         return blob.public_url
 
-    def update_database(self, title, body, priority):
+    def update_database(self, title, body, priority, link):
         doc_ref = self.db.collection("Notifications").document()
         doc_ref.set(
             {
@@ -81,6 +85,8 @@ class FirebaseUtils:
                 "title": body,
                 "serverID": self.serverID,
                 "priority": priority,
+                "link": link,
+                "isRead": False,
             }
         )
 
