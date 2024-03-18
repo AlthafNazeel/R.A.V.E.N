@@ -3,12 +3,13 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import tensorflow_hub as hub
 
 import warnings
 warnings.filterwarnings('ignore')
 file_path = os.path.dirname(os.path.abspath(__file__))
 # Load the model
-model  =  file_path + 'archive/saved_model.pb'
+model = hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
 
 # Check the available signatures
 print(model.signatures)
