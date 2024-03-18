@@ -63,11 +63,13 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                 // ? DateFormat('yyyy-MM-dd HH:mm:ss').format(notification['time'].toDate())
                 ? DateFormat('hh:mm:ss').format(notification['time'].toDate())
                 : 'No Time';
+                final isRead = notification['isRead'] ?? false;
 
                 return NotificationTile(
                   title: title,
                   subtitle: subtitle,
                   time: time,
+                  isRead: isRead,
                   onTap: () {
                     // what to do on tap
                   },
@@ -85,12 +87,14 @@ class NotificationTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final String time;
+  final bool isRead;
   final VoidCallback onTap;
 
   const NotificationTile({
     required this.title,
     required this.subtitle,
     required this.time,
+    required this.isRead,
     required this.onTap,
   });
 
@@ -100,6 +104,12 @@ class NotificationTile extends StatelessWidget {
       title: Text(title),
       subtitle: Text(subtitle),
       trailing: Text(time),
+      leading: Icon(
+        // trailing Displays the time on the right side of the tile
+        isRead ? Icons.notifications_off : Icons.notifications,
+        color: isRead ? Colors.grey : Colors.purple,
+        // if notification read turn icon to gray
+      ),
       onTap: onTap,
     );
   }
