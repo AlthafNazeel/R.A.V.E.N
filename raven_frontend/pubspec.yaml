@@ -37,6 +37,8 @@ dependencies:
   firebase_messaging: ^14.7.14
   firebase_core: ^2.25.3
   video_player: ^2.8.3
+  smooth_page_indicator: ^1.1.0
+  get: ^4.6.5 #state management
   # pie chart
   pie_chart: ^5.1.0
   cloud_firestore: ^4.15.8
@@ -69,6 +71,9 @@ flutter:
       - images/bgpic2.jpg
       - images/bgpicnew.jpg
       - images/getstarted bg.jpg
+      - images/RAVEN_LOGO.png
+      - images/onboarding/OB1.png
+      - images/onboarding/0B2.gif
       
  #   - images/a_dot_ham.jpeg
 
