@@ -43,15 +43,17 @@ def main():
 
     # cv2.destroyAllWindows()
 
-    # link = firebase.upload_clip("testvideo.mp4", "testvideo")
-    # print(link)
-    # print("Send Notification")
+    link = firebase.upload_clip("test.mp4", "test2")
+    # firebase.update_database("Hello There", "ICUP", 2, link)
+    print(link)
+    print("Send Notification")
 
     firebase.send_to_token(
-        "fjFaquaNRK6w7hSbGnXvbi:APA91bEC6RB6QNcGXpyyo-6m3Is9PVaE3QaxL6onoCWEKVWmVGe-kcZlb0EMB-9-noza-x5up5rCWslx4zHvjYW2XVXDAkpmtejRXeQ9YixLuWfe7S5FHtfdtxvasFrx6NlKEg5VYfSg",
+        "cdTxdUSFSqq9UKR4Xh6UXq:APA91bHLSjqCYEJOUQhb_CC4QYX43utkmdkubnx4MTrJlbV64-WSn1YDJ6pekwOlFtX5NnWerq_gYdtNUurb-ocFWplsN0Q9EIP7KEYINvleBA7sSCR0rN-K448X2kCOLdLAKhOhuGc9",
         "Camera 03",
         "Fall Detected !!",
-        {"videoUrl": "link"},
+        {"videoUrl": link},
+        2,
     )
 
     # firebase.update_database("Camera 03", "Fall Detected!")
