@@ -2,7 +2,8 @@ from typing import Any
 from firebase_admin import messaging, credentials, storage, firestore
 import firebase_admin
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
+from google.auth.transport.requests import Request
 
 
 class FirebaseUtils:
@@ -19,7 +20,7 @@ class FirebaseUtils:
         self.db = firestore.client()
         self.serverID = ID
 
-    def send_to_token(self, registration_token, title, body, data=None) -> Any:
+    def send_to_token(self, registration_token, title, body, data, priority) -> Any:
         message = messaging.Message(
             notification=messaging.Notification(
                 title=title,
@@ -29,9 +30,8 @@ class FirebaseUtils:
             token=registration_token,
         )
         response = messaging.send(message)
-        print(response)
 
-        self.update_database(title, body)
+        # self.update_database(title, body, priority, data[0])
 
         return response
 
@@ -70,9 +70,13 @@ class FirebaseUtils:
         blob = bucket.blob(name)
         blob.upload_from_filename(path)
 
+        # Set ACL to public-read
+        blob.acl.all().grant_read()
+        blob.acl.save()
+
         return blob.public_url
 
-    def update_database(self, title, body):
+    def update_database(self, title, body, priority, link):
         doc_ref = self.db.collection("Notifications").document()
         doc_ref.set(
             {
@@ -80,6 +84,9 @@ class FirebaseUtils:
                 "time": datetime.now(),
                 "title": body,
                 "serverID": self.serverID,
+                "priority": priority,
+                "link": link,
+                "isRead": False,
             }
         )
 
