@@ -49,9 +49,9 @@ def main():
     print("Send Notification")
 
     firebase.send_to_token(
-        "cdTxdUSFSqq9UKR4Xh6UXq:APA91bHLSjqCYEJOUQhb_CC4QYX43utkmdkubnx4MTrJlbV64-WSn1YDJ6pekwOlFtX5NnWerq_gYdtNUurb-ocFWplsN0Q9EIP7KEYINvleBA7sSCR0rN-K448X2kCOLdLAKhOhuGc9",
+        "cNbBYeUfRwWODbNTdnkjJE:APA91bEFlgcwEX0NJy0QskDZffVwS1sdrRr6RDPm345_o3VwLtg6C5k6r-QNf9IYtmZU6sbFYNNybGGADEh4izKoTVfAFBKRs-XoAEkvHYf8ks61vvNVqC2a-SkrgdC7pHBppvNn99AP",
         "Camera 13",
-        "Anita Max Wynn",
+        "Hello There",
         {"videoUrl": link},
         2,
     )
