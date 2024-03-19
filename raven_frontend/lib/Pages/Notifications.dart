@@ -1,7 +1,9 @@
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/api/firebase_api.dart'; // Import FirebaseApi
+import 'package:raven_frontend/Pages/alert.dart';
+import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:intl/intl.dart';
+import 'package:raven_frontend/main.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +25,7 @@ class NotificationsPageE extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPageE> {
+  String filter = 'all'; // Default filter value
   final FirebaseApi api = FirebaseApi(); // Initialize FirebaseApi
 
   @override
@@ -42,28 +45,41 @@ class _NotificationsPageState extends State<NotificationsPageE> {
             // code to open menu
           },
         ),
+      actions: [
+          _buildFilterButton('All', 'all'),
+          _buildFilterButton('Unread', 'unread'),
+          _buildFilterButton('Fall', 'Fall'),
+          _buildFilterButton('Emergency', 'Emergency'),
+        ],
       ),
       body: FutureBuilder(
-        future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"), // serverID 
-        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
+        builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            List<dynamic> notifications = snapshot.data!;
+            List<Map<String, dynamic>> notifications = snapshot.data!;
+
+            // Filter notifications based on the selected filter
+            notifications = filterData(notifications, filter);
+
             return ListView.builder(
               itemCount: notifications.length,
               itemBuilder: (context, index) {
                 final notification = notifications[index];
-                final title = notification['title'] ?? 'No Title';
-                final subtitle = notification['subtitle'] ?? 'No Subtitle';
-                // final time = notification['time'] ?? 'No Time'; 
-                final time = notification['time'] != null
-                // ? DateFormat('yyyy-MM-dd HH:mm:ss').format(notification['time'].toDate())
-                ? DateFormat('hh:mm:ss').format(notification['time'].toDate())
-                : 'No Time';
-                final isRead = notification['isRead'] ?? false;
+                final documentId = notification['id'];
+                final title = notification['data']['title'] ?? 'No Title';
+                final subtitle =
+                    notification['data']['subtitle'] ?? 'No Subtitle';
+                final time = notification['data']['time'] != null
+                    ? DateFormat('hh:mm:ss')
+                        .format(notification['data']['time'].toDate())
+                    : 'No Time';
+                final isRead = notification['data']['isRead'] ?? false;
+
+                final link = notification['data']['link'];
 
                 return NotificationTile(
                   title: title,
@@ -71,7 +87,25 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                   time: time,
                   isRead: isRead,
                   onTap: () {
-                    // what to do on tap
+                    // api.markNotificationAsRead(documentId);
+                    setState(() {});
+                    navigatorKey.currentState?.pushNamed(
+                      "/notification_screen",
+                      arguments: RemoteMessage(
+                        data: {
+                          "videoUrl": link,
+                          "id": documentId,
+                          "title": title,
+                          "subtitle": subtitle,
+                        },
+                      ),
+                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => Alert(),
+                    //   ),
+                    // );
                   },
                 );
               },
@@ -81,6 +115,48 @@ class _NotificationsPageState extends State<NotificationsPageE> {
       ),
     );
   }
+
+  Widget _buildFilterButton(String text, String filterType) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        onPressed: () {
+          setState(() {
+            filter = filterType;
+          });
+        },
+        child: Text(
+          text,
+          style: TextStyle(
+            color: filter == filterType ? Colors.purple : Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Map<String, dynamic>> filterData(List<Map<String, dynamic>> data, String filterType) {
+    switch (filterType) {
+      case 'all':
+        return data;
+      case 'unread':
+        // return data.where((notification) => notification['data']['isRead'] == false).toList();
+        final unreadNotifications = data.where((notification) => notification['data']['isRead'] == false).toList();
+        print("Unread notifications: ${unreadNotifications.length}");
+        return unreadNotifications;
+      case 'Fall':
+        final highPriorityNotifications = data.where((notification) => notification['data']['priority'] == 1).toList();
+        print("High priority notifications: ${highPriorityNotifications.length}");
+        return highPriorityNotifications;
+      case 'Emergency':
+        final emergencyNotifications = data.where((notification) => notification['data']['priority'] == 2).toList();
+        print("Emergency notifications: ${emergencyNotifications.length}");
+        return emergencyNotifications;
+      default:
+        return data; // Handle other filter types if needed
+    }
+  }
+
 }
 
 class NotificationTile extends StatelessWidget {
@@ -101,7 +177,12 @@ class NotificationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(
+      title,
+      style: TextStyle(
+        fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
+      ),
+    ),
       subtitle: Text(subtitle),
       trailing: Text(time),
       leading: Icon(

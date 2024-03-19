@@ -55,16 +55,19 @@ class FirebaseApi {
     }
   }
 
-  Future<List<dynamic>> getNotificationData(String serverID) async {
+  Future<List<Map<String, dynamic>>> getNotificationData(
+      String serverID) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          // .collection("Notifications")
-          .collection("NewNotifications") 
+          .collection("Notifications")
+          // .collection("NewNotifications") 
           .where("serverID", isEqualTo: serverID)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
-        return querySnapshot.docs.map((doc) => doc.data()).toList();
+        return querySnapshot.docs.map((doc) {
+          return {'id': doc.id, 'data': doc.data()};
+        }).toList();
       } else {
         print("No documents found with serverID: $serverID");
         return [];
@@ -75,25 +78,17 @@ class FirebaseApi {
     }
   }
 
-Future<void> updateNotificationReadStatus({
-    required String notificationId,
-    required bool isRead,
-  }) async {
+  Future<void> markNotificationAsRead(String documentId) async {
     try {
-      // Reference the document containing the notification data
-      final docRef = FirebaseFirestore.instance.collection('NewNotifications').doc(notificationId);
-
-      // Update the 'isRead' field
-      await docRef.update({
-        'isRead': isRead,
-      });
+      await FirebaseFirestore.instance
+          .collection("Notifications")
+          .doc(documentId)
+          .update({'isRead': true});
+      print('Notification marked as read: $documentId');
     } catch (error) {
-      // Handle errors during update
-      print('Error updating isRead: $error');
-      // Consider providing user feedback
+      print('Error marking notification as read: $error');
     }
   }
-
 
   Future<List<dynamic>> getNotificationCount(
       String serverID, int priority) async {
@@ -116,4 +111,3 @@ Future<void> updateNotificationReadStatus({
     }
   }
 }
-
