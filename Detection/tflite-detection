@@ -129,7 +129,7 @@ while True:
     keypoints_with_scores = results['output_0'].numpy()[:, :, :51].reshape((6, 17, 3))
     """6 people by 17 keypoints by 3 values for each keypoint"""
     
-    print(keypoints_with_scores)
+    # print(keypoints_with_scores)
     
     # To grab the 1st person keypoints...
     print("\n===== Grabbing first person keypoints: =====\n", keypoints_with_scores[0])
@@ -170,22 +170,29 @@ while True:
     # Eventually let's render that keypoints and connections on blank image as well...
     loop_through_people(output_img, keypoints_with_scores, EDGES, 0.1)
 
-    def detect_fall(keypoints_with_scores, threshold=0.3):
+    def detect_fall(keypoints_with_scores, threshold=0.1):
         for person in keypoints_with_scores:
             shoulder_left = person[5]  # left shoulder keypoint
             shoulder_right = person[6]  # right shoulder keypoint
-            hip_left = person[11]  # left hip keypoint
-            hip_right = person[12]  # right hip keypoint
+            head = person[0]  # head keypoint
+            wrist_left = person[9]
+            wrist_right = person[10]
+
+            # Check if both wrists are above the head with a threshold
+            if abs(wrist_left[1] - head[1]) > threshold and abs(wrist_right[1] - head[1]) > threshold:
+                return True # Emergency detected
+        return False  # No emergency detected
+
             
-            # Check if the person has fallen
-            if hip_left[1] >= shoulder_left[1] + threshold or hip_right[1] >= shoulder_right[1] + threshold:
-                return True  # Fall detected
-        return False  # No fall detected
+        #     # Check if the person has fallen
+        #     if hip_left[1] > shoulder_left[1] + threshold or hip_right[1] >= shoulder_right[1] + threshold:
+        #         return True  # Fall detected
+        # return False  # No fall detected
         
      # Detect fall
     if detect_fall(keypoints_with_scores):
-        print("Fall detected")
-        cv2.putText(frame, "Fall detected", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        print("Emergency detected (hands raised)")
+        cv2.putText(frame, "Emergency detected (hands raised)", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     # Show the image or frame in a particular window
     cv2.imshow('MultiPose Estimation', frame)
     
