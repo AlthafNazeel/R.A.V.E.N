@@ -160,6 +160,10 @@ class Alert extends StatelessWidget {
 
     final videoUrl = message.data['videoUrl'] as String;
 
+    final title = message.data['title'] as String;
+
+    final subtitle = message.data['subtitle'] as String;
+
     final id = message.data['id'] as String;
     api.markNotificationAsRead(id);
 

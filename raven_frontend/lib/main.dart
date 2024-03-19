@@ -43,6 +43,8 @@ class MyApp extends StatelessWidget {
         '/add_device': (context) => const AddDevice(),
         // '/GetStartedPage': (context) => OnboardingScreen(),
         '/Notifications': (context) => NotificationsPage(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
+        '/Notifications': (context) => NotificationsPageE(),
       },
     );
   }
