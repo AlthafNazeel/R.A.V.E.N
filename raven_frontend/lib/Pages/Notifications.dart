@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/api/firebase_api.dart'; // Import FirebaseApi
+import 'package:raven_frontend/Pages/alert.dart';
+import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -44,26 +44,27 @@ class _NotificationsPageState extends State<NotificationsPageE> {
         ),
       ),
       body: FutureBuilder(
-        future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"), // serverID 
-        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
+        builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            List<dynamic> notifications = snapshot.data!;
+            List<Map<String, dynamic>> notifications = snapshot.data!;
             return ListView.builder(
               itemCount: notifications.length,
               itemBuilder: (context, index) {
                 final notification = notifications[index];
-                final title = notification['title'] ?? 'No Title';
-                final subtitle = notification['subtitle'] ?? 'No Subtitle';
-                // final time = notification['time'] ?? 'No Time'; 
-                final time = notification['time'] != null
-                // ? DateFormat('yyyy-MM-dd HH:mm:ss').format(notification['time'].toDate())
-                ? DateFormat('hh:mm:ss').format(notification['time'].toDate())
-                : 'No Time';
-                final isRead = notification['isRead'] ?? false;
+                final documentId = notification['id'];
+                final title = notification['data']['title'] ?? 'No Title';
+                final subtitle =
+                    notification['data']['subtitle'] ?? 'No Subtitle';
+                final time = notification['data']['time'] != null
+                    ? DateFormat('hh:mm:ss')
+                        .format(notification['data']['time'].toDate())
+                    : 'No Time';
+                final isRead = notification['data']['isRead'] ?? false;
 
                 return NotificationTile(
                   title: title,
@@ -71,7 +72,13 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                   time: time,
                   isRead: isRead,
                   onTap: () {
-                    // what to do on tap
+                    // api.markNotificationAsRead(documentId);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Alert(),
+                      ),
+                    );
                   },
                 );
               },

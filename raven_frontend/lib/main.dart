@@ -14,7 +14,6 @@ import 'package:raven_frontend/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
@@ -29,16 +28,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GetStartedPage(),
+      home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
-        '/notification_screen': (context) => const VideoApp(),
-        '/SettingsPage': (context) => Settings(),
+        '/notification_screen': (context) => const Alert(),
+        // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
         '/GetStartedPage': (context) => GetStartedPage(),
-        '/Notifications': (context) => NotificationsPage(),
+        '/Notifications': (context) => NotificationsPageE(),
       },
     );
   }

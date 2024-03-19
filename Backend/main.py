@@ -50,8 +50,8 @@ def main():
 
     firebase.send_to_token(
         "cdTxdUSFSqq9UKR4Xh6UXq:APA91bHLSjqCYEJOUQhb_CC4QYX43utkmdkubnx4MTrJlbV64-WSn1YDJ6pekwOlFtX5NnWerq_gYdtNUurb-ocFWplsN0Q9EIP7KEYINvleBA7sSCR0rN-K448X2kCOLdLAKhOhuGc9",
-        "Camera 03",
-        "Fall Detected !!",
+        "Camera 13",
+        "Anita Max Wynn",
         {"videoUrl": link},
         2,
     )

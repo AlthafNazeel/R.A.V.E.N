@@ -1,12 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:video_player/video_player.dart';
 
 void main() {
-  // runApp(const MaterialApp(
-  //   debugShowCheckedModeBanner: false,
-  //   home: Alert(),
-  // ));
   runApp(const Alert());
 }
 
@@ -157,20 +154,14 @@ class Alert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseApi api = FirebaseApi();
     final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
 
     final videoUrl = message.data['videoUrl'] as String;
 
-    return Scaffold(
-      appBar: AppBar(title: Text("Alerts")),
-      body: Column(
-        children: [
-          Text(message.notification!.title.toString()),
-          Text(message.notification!.body.toString()),
-          Text(message.data.toString()),
-          VideoApp(videoUrl: videoUrl),
-        ],
-      ),
-    );
+    final id = message.data['id'] as String;
+    api.markNotificationAsRead(id);
+
+    return VideoApp(videoUrl: videoUrl);
   }
 }
