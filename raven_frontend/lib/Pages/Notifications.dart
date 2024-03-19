@@ -1,7 +1,9 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/Pages/alert.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:intl/intl.dart';
+import 'package:raven_frontend/main.dart';
 
 void main() {
   runApp(MyApp());
@@ -66,6 +68,8 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                     : 'No Time';
                 final isRead = notification['data']['isRead'] ?? false;
 
+                final link = notification['data']['link'];
+
                 return NotificationTile(
                   title: title,
                   subtitle: subtitle,
@@ -73,12 +77,23 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                   isRead: isRead,
                   onTap: () {
                     // api.markNotificationAsRead(documentId);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Alert(),
+                    navigatorKey.currentState?.pushNamed(
+                      "/notification_screen",
+                      arguments: RemoteMessage(
+                        data: {
+                          "videoUrl": link,
+                          "id": documentId,
+                          "title": title,
+                          "subtitle": subtitle,
+                        },
                       ),
                     );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => Alert(),
+                    //   ),
+                    // );
                   },
                 );
               },
