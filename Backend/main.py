@@ -49,7 +49,7 @@ def main():
     print("Send Notification")
 
     firebase.send_to_token(
-        "cdTxdUSFSqq9UKR4Xh6UXq:APA91bHLSjqCYEJOUQhb_CC4QYX43utkmdkubnx4MTrJlbV64-WSn1YDJ6pekwOlFtX5NnWerq_gYdtNUurb-ocFWplsN0Q9EIP7KEYINvleBA7sSCR0rN-K448X2kCOLdLAKhOhuGc9",
+        "ek00sNFHSCWjgSD-aCJ8yR:APA91bE4RLwXZppPMcKg95gsqWB0H4KSGkLPxzIZRCDUN_6bQVrioiQKXvuuhKQ2K_ryMEoZ-q3pZL7ZBHaeJuG-OczP1zsFvoh150lHGW2mHmATLD363JBs5S5rbV6Q9heNSu4kAu3f",
         "Camera 03",
         "Fall Detected !!",
         {"videoUrl": link},
