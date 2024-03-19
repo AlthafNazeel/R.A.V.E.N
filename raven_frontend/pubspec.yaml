@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.2.6 <4.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -37,6 +37,8 @@ dependencies:
   firebase_messaging: ^14.7.14
   firebase_core: ^2.25.3
   video_player: ^2.8.3
+  smooth_page_indicator: ^1.1.0
+  get: ^4.6.5 #state management
   # pie chart
   pie_chart: ^5.1.0
   cloud_firestore: ^4.15.8
@@ -70,6 +72,9 @@ flutter:
     - images/bgpic2.jpg
     - images/bgpicnew.jpg
     - images/getstarted bg.jpg
+    - images/RAVEN_LOGO.png
+    - images/onboarding/OB1.png
+    - images/onboarding/0B2.gif
 
   #   - images/a_dot_ham.jpeg
 
@@ -87,7 +92,7 @@ flutter:
   fonts:
     - family: Raleway
       fonts:
-        - asset: fonts\Raleway-VariableFont_wght.ttf
+        - asset: fonts/Raleway-VariableFont_wght.ttf
           weight:
             800
             # style: italic
@@ -103,13 +108,6 @@ flutter:
         - asset: fonts/ProtestRiot-Regular.ttf
           #      - asset: fonts/TrajanPro_Bold.ttf
           weight: 800
-
-    - family: NotoSerif
-      fonts:
-        # - asset: fonts/NotoSerif-Italic-VariableFont_wdth,wght.ttf
-        - asset: fonts/NotoSerif-VariableFont_wdth,wght.ttf
-          weight: 800
-
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # see https://flutter.dev/custom-fonts/#from-packages.

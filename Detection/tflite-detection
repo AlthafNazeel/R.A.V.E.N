@@ -167,25 +167,28 @@ while True:
     # fill the pixels with white(255)
     output_img.fill(255)
     
-    # let's define the grid parameters for drawing the grid...
-    num_rows = 50
-    num_cols = 50
-    
-    for i in range(1, num_rows):
-        cv2.line(output_img, (0, i * h //  num_rows), (w, i * h // num_rows), (0,0,0), 1)
-    
-    for i in range(1, num_cols):
-        cv2.line(output_img, (i * w // num_cols, 0), (i * w // num_cols, h), (0, 0, 0), 1)
-
     # Eventually let's render that keypoints and connections on blank image as well...
     loop_through_people(output_img, keypoints_with_scores, EDGES, 0.1)
+
+    def detect_fall(keypoints_with_scores, threshold=0.3):
+        for person in keypoints_with_scores:
+            shoulder_left = person[5]  # left shoulder keypoint
+            shoulder_right = person[6]  # right shoulder keypoint
+            hip_left = person[11]  # left hip keypoint
+            hip_right = person[12]  # right hip keypoint
+            
+            # Check if the person has fallen
+            if hip_left[1] >= shoulder_left[1] + threshold or hip_right[1] >= shoulder_right[1] + threshold:
+                return True  # Fall detected
+        return False  # No fall detected
         
+     # Detect fall
+    if detect_fall(keypoints_with_scores):
+        print("Fall detected")
+        cv2.putText(frame, "Fall detected", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     # Show the image or frame in a particular window
     cv2.imshow('MultiPose Estimation', frame)
     
-    # Showing that blank image on which the keypoints and connections will be rendered...
-    cv2.imshow("Extracted MultiPose Estimation", output_img)
-
     #stop the execution on pressing the escape key on keyboard
     if cv2.waitKey(1) == 27:
         break

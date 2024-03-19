@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppFonts {
   static const String _primaryFont = 'OpenSans';
   static const String welcometxt = 'Raleway';
-  static const String welcometxt1 = 'NotoSerif';
+  // static const String welcometxt1 = 'NotoSerif';
 
   static TextStyle heading1Font({
     Color color = Colors.black,
