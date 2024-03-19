@@ -36,17 +36,24 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        title: Text(
-          'Home Page',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w800,
-          ),
+        title: DropdownButton<String>(
+          
+          items: <String>['Home', 'Work place', 'Somewhere']
+              .map((String value) {
+            return DropdownMenuItem<String>(
+
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            // Handle dropdown item selection here
+          },
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.pushNamed(context, '/signInPage');
+            Navigator.pushNamed(context, '/signIn');
           },
         ),
         actions: [
@@ -65,7 +72,7 @@ class HomePage extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      // resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       body: Center(
         child: Container(
