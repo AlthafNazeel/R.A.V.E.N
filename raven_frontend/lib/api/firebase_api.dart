@@ -58,8 +58,8 @@ class FirebaseApi {
   Future<List<dynamic>> getNotificationData(String serverID) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          // .collection("Notifications")
-          .collection("NewNotifications") 
+          .collection("Notifications")
+          // .collection("NewNotifications") 
           .where("serverID", isEqualTo: serverID)
           .get();
 
@@ -81,7 +81,7 @@ Future<void> updateNotificationReadStatus({
   }) async {
     try {
       // Reference the document containing the notification data
-      final docRef = FirebaseFirestore.instance.collection('NewNotifications').doc(notificationId);
+      final docRef = FirebaseFirestore.instance.collection('Notifications').doc(notificationId);
 
       // Update the 'isRead' field
       await docRef.update({

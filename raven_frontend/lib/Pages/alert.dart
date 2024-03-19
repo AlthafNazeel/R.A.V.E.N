@@ -25,7 +25,8 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    // _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    _controller = VideoPlayerController.networkUrl(Uri.parse("https://storage.googleapis.com/raven-2e2e0.appspot.com/testy"))
       ..initialize().then((_) {
         setState(() {});
       });
@@ -161,16 +162,6 @@ class Alert extends StatelessWidget {
 
     final videoUrl = message.data['videoUrl'] as String;
 
-    return Scaffold(
-      appBar: AppBar(title: Text("Alerts")),
-      body: Column(
-        children: [
-          Text(message.notification!.title.toString()),
-          Text(message.notification!.body.toString()),
-          Text(message.data.toString()),
-          VideoApp(videoUrl: videoUrl),
-        ],
-      ),
-    );
+    return VideoApp(videoUrl: videoUrl);
   }
 }
