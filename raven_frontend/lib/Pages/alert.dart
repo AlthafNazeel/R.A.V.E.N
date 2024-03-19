@@ -22,7 +22,8 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    // _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    _controller = VideoPlayerController.networkUrl(Uri.parse("https://storage.googleapis.com/raven-2e2e0.appspot.com/testy"))
       ..initialize().then((_) {
         setState(() {});
       });

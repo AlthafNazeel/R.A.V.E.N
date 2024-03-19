@@ -25,6 +25,7 @@ class NotificationsPageE extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPageE> {
+  String filter = 'all'; // Default filter value
   final FirebaseApi api = FirebaseApi(); // Initialize FirebaseApi
 
   @override
@@ -44,6 +45,12 @@ class _NotificationsPageState extends State<NotificationsPageE> {
             // code to open menu
           },
         ),
+      actions: [
+          _buildFilterButton('All', 'all'),
+          _buildFilterButton('Unread', 'unread'),
+          _buildFilterButton('Fall', 'Fall'),
+          _buildFilterButton('Motion', 'motion'),
+        ],
       ),
       body: FutureBuilder(
         future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
@@ -103,6 +110,26 @@ class _NotificationsPageState extends State<NotificationsPageE> {
       ),
     );
   }
+
+  Widget _buildFilterButton(String text, String filterType) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        onPressed: () {
+          setState(() {
+            filter = filterType;
+          });
+        },
+        child: Text(
+          text,
+          style: TextStyle(
+            color: filter == filterType ? Colors.purple : Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
 }
 
 class NotificationTile extends StatelessWidget {
@@ -123,7 +150,12 @@ class NotificationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(
+      title,
+      style: TextStyle(
+        fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
+      ),
+    ),
       subtitle: Text(subtitle),
       trailing: Text(time),
       leading: Icon(
