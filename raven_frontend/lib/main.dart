@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/Pages/getStarted.dart';
+import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 
 import 'package:raven_frontend/Pages/alert.dart';
 import 'package:raven_frontend/Pages/navigation.dart';
@@ -38,17 +38,11 @@ class MyApp extends StatelessWidget {
         '/signInPage': (context) => SignIn(),
         '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => GetStartedPage(),
+        '/GetStartedPage': (context) => OnboardingScreen(),
         '/Notifications': (context) => NotificationsPage(),
       },
 
-       home: Scaffold(
-        appBar: AppBar(
-          title: Text('My App'),
-        ),
-        drawer: Navigation(), // Add your custom drawer widget here
-        body: GetStartedPage(),
-       ),
+       
     );
   }
 }
