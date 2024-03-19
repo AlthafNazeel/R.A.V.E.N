@@ -29,13 +29,13 @@ class MyApp extends StatelessWidget {
       home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
-        '/notification_screen': (context) => const VideoApp(),
-        '/SettingsPage': (context) => Settings(),
+        '/notification_screen': (context) => const Alert(),
+        // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
         '/GetStartedPage': (context) => OnboardingScreen(),
-        '/Notifications': (context) => NotificationsPage(),
+        '/Notifications': (context) => NotificationsPageE(),
       },
     );
   }
