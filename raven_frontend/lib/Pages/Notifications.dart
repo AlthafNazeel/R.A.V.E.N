@@ -49,7 +49,7 @@ class _NotificationsPageState extends State<NotificationsPageE> {
           _buildFilterButton('All', 'all'),
           _buildFilterButton('Unread', 'unread'),
           _buildFilterButton('Fall', 'Fall'),
-          _buildFilterButton('Motion', 'motion'),
+          _buildFilterButton('Emergency', 'Emergency'),
         ],
       ),
       body: FutureBuilder(
@@ -61,6 +61,10 @@ class _NotificationsPageState extends State<NotificationsPageE> {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             List<Map<String, dynamic>> notifications = snapshot.data!;
+
+            // Filter notifications based on the selected filter
+            notifications = filterData(notifications, filter);
+
             return ListView.builder(
               itemCount: notifications.length,
               itemBuilder: (context, index) {
@@ -84,6 +88,7 @@ class _NotificationsPageState extends State<NotificationsPageE> {
                   isRead: isRead,
                   onTap: () {
                     // api.markNotificationAsRead(documentId);
+                    setState(() {});
                     navigatorKey.currentState?.pushNamed(
                       "/notification_screen",
                       arguments: RemoteMessage(
@@ -128,6 +133,28 @@ class _NotificationsPageState extends State<NotificationsPageE> {
         ),
       ),
     );
+  }
+
+  List<Map<String, dynamic>> filterData(List<Map<String, dynamic>> data, String filterType) {
+    switch (filterType) {
+      case 'all':
+        return data;
+      case 'unread':
+        // return data.where((notification) => notification['data']['isRead'] == false).toList();
+        final unreadNotifications = data.where((notification) => notification['data']['isRead'] == false).toList();
+        print("Unread notifications: ${unreadNotifications.length}");
+        return unreadNotifications;
+      case 'Fall':
+        final highPriorityNotifications = data.where((notification) => notification['data']['priority'] == 1).toList();
+        print("High priority notifications: ${highPriorityNotifications.length}");
+        return highPriorityNotifications;
+      case 'Emergency':
+        final emergencyNotifications = data.where((notification) => notification['data']['priority'] == 2).toList();
+        print("Emergency notifications: ${emergencyNotifications.length}");
+        return emergencyNotifications;
+      default:
+        return data; // Handle other filter types if needed
+    }
   }
 
 }
