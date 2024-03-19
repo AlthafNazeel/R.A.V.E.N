@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/Pages/TemporaryNotifications.dart';
-import 'package:raven_frontend/Pages/getStarted.dart';
+// import 'package:raven_frontend/Pages/getStarted.dart';
 import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 
 import 'package:flutter/rendering.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => OnboardingScreen(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
         '/Notifications': (context) => NotificationsPage(),
       },
     );
