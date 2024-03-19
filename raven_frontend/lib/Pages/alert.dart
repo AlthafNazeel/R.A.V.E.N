@@ -22,7 +22,8 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    // _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
+    _controller = VideoPlayerController.networkUrl(Uri.parse("https://storage.googleapis.com/raven-2e2e0.appspot.com/testy"))
       ..initialize().then((_) {
         setState(() {});
       });
@@ -158,6 +159,10 @@ class Alert extends StatelessWidget {
     final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
 
     final videoUrl = message.data['videoUrl'] as String;
+
+    final title = message.data['title'] as String;
+
+    final subtitle = message.data['subtitle'] as String;
 
     final id = message.data['id'] as String;
     api.markNotificationAsRead(id);

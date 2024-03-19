@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+// import 'package:raven_frontend/Pages/getStarted.dart';
 import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 
 import 'package:flutter/rendering.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       navigatorKey: navigatorKey,
@@ -32,9 +34,11 @@ class MyApp extends StatelessWidget {
         '/notification_screen': (context) => const Alert(),
         // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
-        '/homePage': (context) => HomePage(),
+        // '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => OnboardingScreen(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
+        // '/Notifications': (context) => NotificationsPage(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
         '/Notifications': (context) => NotificationsPageE(),
       },
     );
