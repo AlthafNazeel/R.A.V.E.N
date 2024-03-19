@@ -43,15 +43,15 @@ def main():
 
     # cv2.destroyAllWindows()
 
-    link = firebase.upload_clip("test.mp4", "test2")
+    link = firebase.upload_clip("testvideo.mp4", "tuf")
     # firebase.update_database("Hello There", "ICUP", 2, link)
     print(link)
     print("Send Notification")
 
     firebase.send_to_token(
         "cNbBYeUfRwWODbNTdnkjJE:APA91bEFlgcwEX0NJy0QskDZffVwS1sdrRr6RDPm345_o3VwLtg6C5k6r-QNf9IYtmZU6sbFYNNybGGADEh4izKoTVfAFBKRs-XoAEkvHYf8ks61vvNVqC2a-SkrgdC7pHBppvNn99AP",
-        "Camera 13",
-        "Hello There",
+        "Camera 17",
+        "Assalamu Alaikum",
         {"videoUrl": link},
         2,
     )

@@ -34,23 +34,23 @@ class OnboardingScreen extends StatelessWidget {
                     height: 200.0,
                     fit: BoxFit.cover,
                   ),
-                  Text(
-                    'Safety at your fingertips',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Text(
-                    'Introducing RAVEN, your complete home safety solution',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.normal,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  // Text(
+                  //   'Safety at your fingertips',
+                  //   style: TextStyle(
+                  //     fontSize: 20.0,
+                  //     fontWeight: FontWeight.bold,
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 20.0),
+                  // Text(
+                  //   'Introducing RAVEN, your complete home safety solution',
+                  //   style: TextStyle(
+                  //     fontSize: 14.0,
+                  //     fontWeight: FontWeight.normal,
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
                 ],
               ),
             ],
