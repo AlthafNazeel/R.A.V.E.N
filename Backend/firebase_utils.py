@@ -21,6 +21,9 @@ class FirebaseUtils:
         self.serverID = ID
 
     def send_to_token(self, registration_token, title, body, data, priority) -> Any:
+
+        document_id = self.update_database(title, body, priority, data["videoUrl"])
+        data["id"] = document_id
         message = messaging.Message(
             notification=messaging.Notification(
                 title=title,
@@ -30,8 +33,6 @@ class FirebaseUtils:
             token=registration_token,
         )
         response = messaging.send(message)
-
-        # self.update_database(title, body, priority, data[0])
 
         return response
 
@@ -89,6 +90,9 @@ class FirebaseUtils:
                 "isRead": False,
             }
         )
+
+        document_id = doc_ref.id
+        return document_id
 
     def get_devices(self):
         document = self.db.collection("Servers").document(self.serverID)
