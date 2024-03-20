@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/Pages/TemporaryNotifications.dart';
-import 'package:raven_frontend/Pages/getStarted.dart';
+// import 'package:raven_frontend/Pages/getStarted.dart';
 import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 
 import 'package:flutter/rendering.dart';
@@ -11,7 +10,6 @@ import 'package:raven_frontend/Pages/signInPage.dart';
 import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/add_device.dart';
 import 'package:raven_frontend/Pages/Notifications.dart';
-import 'package:raven_frontend/Pages/testnot.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/firebase_options.dart';
 
@@ -30,18 +28,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      // home: NotificationList(),
-      // home: NotificationsPage(),
-      // home: NotificationsssssssPage(),
-      home: NotificationsPageE(),
+      home: HomePage(),
       navigatorKey: navigatorKey,
       routes: {
-        '/notification_screen': (context) => const Alert(),
+        '/notification_screen': (context) =>  Alert(),
         // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
-        '/GetStartedPage': (context) => OnboardingScreen(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
+        // '/Notifications': (context) => NotificationsPage(),
+        // '/GetStartedPage': (context) => OnboardingScreen(),
         '/Notifications': (context) => NotificationsPageE(),
       },
     );

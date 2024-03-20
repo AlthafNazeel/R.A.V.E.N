@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/components/onboarding_data.dart';
+
+
+//import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,54 +12,117 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: OnboardingScreen(),
+      debugShowCheckedModeBanner: false,
+      home: const OnboardingPage(),
     );
   }
 }
 
+class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({key});
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
 
+class _OnboardingPageState extends State<OnboardingPage> {
+  final controller = OnboardingData();
+  final pageController = PageController();
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          PageView(
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/onboarding/OB1.png', // Corrected asset path
-                    errorBuilder: (context, error, stackTrace) =>
-                        Text('Error: Could not load image'),
-                    width: double.infinity,
-                    height: 200.0,
-                    fit: BoxFit.cover,
-                  ),
-                  Text(
-                    'Safety at your fingertips',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Text(
-                    'Introducing RAVEN, your complete home safety solution',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.normal,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          body(),
+          buildDots(),
+          button(),
         ],
+      ),
+    );
+  }
+
+  //Body
+  Widget body(){
+    return Expanded(
+      child: Center(
+        child: PageView.builder(
+            onPageChanged: (value){
+              setState(() {
+                currentIndex = value;
+              });
+            },
+            itemCount: controller.items.length,
+            itemBuilder: (context,index){
+             return Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 20),
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   //Images
+                   Image.asset(controller.items[currentIndex].image),
+
+                   const SizedBox(height: 15),
+                   //Titles
+                   Text(controller.items[currentIndex].title,
+                     style: const TextStyle(
+                      fontSize: 25,
+                      //color: primaryColor,
+                      fontWeight: FontWeight.bold),
+
+
+                     textAlign: TextAlign.center,),
+
+                   //Description
+                   Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 25),
+                     child: Text(controller.items[currentIndex].description,
+                       style: const TextStyle(color: Colors.grey,fontSize: 16),textAlign: TextAlign.center,),
+                   ),
+
+                 ],
+               ),
+             );
+        }),
+      ),
+    );
+  }
+
+  //Dots
+  Widget buildDots(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(controller.items.length, (index) => AnimatedContainer(
+          margin: const EdgeInsets.symmetric(horizontal: 2),
+          decoration:   BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            //color: currentIndex == index? primaryColor : Colors.grey,
+          ),
+          height: 7,
+          width: currentIndex == index? 30 : 7,
+          duration: const Duration(milliseconds: 700))),
+    );
+  }
+
+  //Button
+  Widget button(){
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      width: MediaQuery.of(context).size.width *.9,
+      height: 55,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        //color: primaryColor
+      ),
+
+      child: TextButton(
+        onPressed: (){
+          setState(() {
+            currentIndex != controller.items.length -1? currentIndex++ : null;
+          });
+        },
+        child: Text(currentIndex == controller.items.length -1? "Get started" : "Continue",
+          style: const TextStyle(color: Colors.white),),
       ),
     );
   }
