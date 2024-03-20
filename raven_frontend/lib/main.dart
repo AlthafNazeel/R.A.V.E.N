@@ -28,10 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      // home: NotificationList(),
-      // home: NotificationsPage(),
-      // home: NotificationsssssssPage(),
-      home: NotificationsPageE(),
+      home: HomePage(),
       navigatorKey: navigatorKey,
       routes: {
         '/notification_screen': (context) =>  Alert(),
