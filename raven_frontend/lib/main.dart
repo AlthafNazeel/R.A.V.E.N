@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
-        '/notification_screen': (context) => const Alert(),
+        '/notification_screen': (context) =>  Alert(),
         // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
