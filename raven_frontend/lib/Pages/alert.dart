@@ -1,11 +1,10 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:video_player/video_player.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Alert(),
   ));
@@ -49,7 +48,7 @@ class _VideoAppState extends State<VideoApp> {
                           aspectRatio: _controller.value.aspectRatio,
                           child: VideoPlayer(_controller),
                         )
-                      : Center(child: CircularProgressIndicator()),
+                      : const Center(child: CircularProgressIndicator()),
                   Positioned.fill(
                     child: Container(
                       decoration: BoxDecoration(
@@ -64,7 +63,7 @@ class _VideoAppState extends State<VideoApp> {
                               size: 50,
                               color: Colors.purple[100],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               'Tap to Play Video',
                               style: TextStyle(
@@ -80,20 +79,20 @@ class _VideoAppState extends State<VideoApp> {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.purple.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Alert Information',
                         style: TextStyle(
                           color: Colors.black87,
@@ -101,7 +100,7 @@ class _VideoAppState extends State<VideoApp> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 18),
+                      const SizedBox(height: 18),
                       _buildDetailRow(
                         context,
                         label: 'Title:',
@@ -130,28 +129,28 @@ class _VideoAppState extends State<VideoApp> {
                         value:
                             '${DateTime.now().hour}:${DateTime.now().minute}',
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                     ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      backgroundColor: Colors.red,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 58, vertical: 12),
+                          const EdgeInsets.symmetric(horizontal: 58, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Send Alert',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -159,14 +158,14 @@ class _VideoAppState extends State<VideoApp> {
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
+                      backgroundColor: Colors.green,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 73, vertical: 12),
+                          const EdgeInsets.symmetric(horizontal: 73, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Ignore',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -185,21 +184,21 @@ class _VideoAppState extends State<VideoApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 25), // Add space above the row
+        const SizedBox(height: 25), // Add space above the row
         Row(
           children: [
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black87,
                 fontSize: 24,
               ),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Expanded(
               child: Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black54,
                   fontSize: 21,
                 ),
@@ -219,7 +218,7 @@ class _VideoAppState extends State<VideoApp> {
 }
 
 class Alert extends StatelessWidget {
-  const Alert({Key? key});
+  const Alert({Key? key, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
