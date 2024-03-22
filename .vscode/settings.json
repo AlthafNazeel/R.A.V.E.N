@@ -1,3 +1,8 @@
 {
-  "cmake.sourceDirectory": "D:/R.A.V.E.N/R.A.V.E.N/raven_frontend/linux"
+  "cmake.sourceDirectory": "D:/R.A.V.E.N/R.A.V.E.N/raven_frontend/linux",
+  "dart.projectSearchPaths": [
+      "C:/Users/ibrah/OneDrive/Documents/OSH/R.A.V.E.N"
+  ],
+  "dart.projectSearchDepth": 5,
+  "dart.flutterSdkPath": "C:\\src\\flutter"
 }

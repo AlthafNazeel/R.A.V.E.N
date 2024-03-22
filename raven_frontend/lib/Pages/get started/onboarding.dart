@@ -5,21 +5,23 @@ import 'package:raven_frontend/components/onboarding_data.dart';
 //import 'package:get/get.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const OnboardingPage(),
+      home: OnboardingPage(),
     );
   }
 }
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({key});
+  const OnboardingPage({Key? key, key}) : super(key: key);
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();

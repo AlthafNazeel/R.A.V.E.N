@@ -13,7 +13,7 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Container(
         // decoration: BoxDecoration(
         //   image: DecorationImage(
@@ -54,7 +54,7 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 100),
 
                 // Email text field
-                CustomTextField(
+                const CustomTextField(
                   label: 'Email',
                   hint: 'Username or e-mail',
                   icon: Icons.email_rounded,
@@ -64,7 +64,7 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 30), 
 
                 // Password field
-                CustomTextField(
+                const CustomTextField(
                   label: 'Password',
                   hint: 'Enter your password',
                   icon: Icons.lock_rounded,
@@ -73,7 +73,7 @@ class SignIn extends StatelessWidget {
 
                 const SizedBox(height: 10),
                 // Forgot password link
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
@@ -98,12 +98,12 @@ class SignIn extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 70,
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 101, 36, 120),
+                      color: const Color.fromARGB(255, 101, 36, 120),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
@@ -117,7 +117,7 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 15),
 
                 // OR separator
-                Text(
+                const Text(
                   '-- or --',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -126,7 +126,7 @@ class SignIn extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 // Add local device message
-                Text(
+                const Text(
                   'ADD LOCAL DEVICE',
                   style: TextStyle(
                     color: Colors.black,
@@ -136,7 +136,7 @@ class SignIn extends StatelessWidget {
                 ),
 
 
-                Expanded(
+                const Expanded(
                   child: SizedBox(), // Takes up remaining space
                 ),
                 
