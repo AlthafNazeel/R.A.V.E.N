@@ -8,6 +8,22 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:raven_frontend/Pages/Navbar/navItem.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: NavBar(),
+    );
+  }
+}
+
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -124,7 +140,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                         title: "My Account",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.NotificationClickedEvent);
                         },
                       ),
                       NavItem(
@@ -132,7 +148,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                         title: "..",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.AddDeviceClickedEvent);
                         },
                       ),
                       NavItem(

@@ -1,17 +1,23 @@
+
+
 import 'package:bloc/bloc.dart';
+import 'package:raven_frontend/Pages/Notifications.dart';
+import 'package:raven_frontend/Pages/add_device.dart';
+import 'package:raven_frontend/Pages/homePage.dart';
+
 
 
 enum NavigationEvents {
   HomePageClickedEvent,
-  MyAccountClickedEvent,
-  MyOrdersClickedEvent,
+  NotificationClickedEvent,
+  AddDeviceClickedEvent,
 }
 
 abstract class NavigationStates {}
 
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   @override
-  NavigationStates get initialState => MyAccountsPage();
+  NavigationStates get initialState => HomePage();
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
@@ -19,11 +25,11 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.HomePageClickedEvent:
         yield HomePage();
         break;
-      case NavigationEvents.MyAccountClickedEvent:
-        yield MyAccountsPage();
+      case NavigationEvents.NotificationClickedEvent:
+        yield NotificationsPageE();
         break;
-      case NavigationEvents.MyOrdersClickedEvent:
-        yield MyOrdersPage();
+      case NavigationEvents.AddDeviceClickedEvent:
+        yield AddDevice();
         break;
     }
   }
