@@ -129,7 +129,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                       ),
                       NavItem(
                         icon: Icons.shopping_basket,
-                        title: "My Orders",
+                        title: "..",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
@@ -137,7 +137,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                       ),
                       NavItem(
                         icon: Icons.card_giftcard,
-                        title: "Wishlist", onTap: () {  },
+                        title: "..", onTap: () {  },
                       ),
                       Divider(
                         height: 64,
