@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/components/color.dart';
 import 'package:raven_frontend/components/onboarding_data.dart';
+
 
 
 //import 'package:get/get.dart';
@@ -69,7 +71,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                    Text(controller.items[currentIndex].title,
                      style: const TextStyle(
                       fontSize: 25,
-                      //color: primaryColor,
+                      color: primaryColor,
                       fontWeight: FontWeight.bold),
 
 
@@ -79,7 +81,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 25),
                      child: Text(controller.items[currentIndex].description,
-                       style: const TextStyle(color: Colors.grey,fontSize: 16),textAlign: TextAlign.center,),
+                       style: const TextStyle(color: Color.fromARGB(255, 100, 98, 98),fontSize: 16),textAlign: TextAlign.center,),
                    ),
 
                  ],
@@ -98,7 +100,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           margin: const EdgeInsets.symmetric(horizontal: 2),
           decoration:   BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            //color: currentIndex == index? primaryColor : Colors.grey,
+            color: currentIndex == index? primaryColor : Color.fromARGB(255, 49, 19, 62),
           ),
           height: 7,
           width: currentIndex == index? 30 : 7,
