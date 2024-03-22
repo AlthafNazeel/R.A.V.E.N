@@ -19,7 +19,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   @override
   NavigationStates get initialState => HomePage();
 
-  @override
+  //@override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
     switch (event) {
       case NavigationEvents.HomePageClickedEvent:
