@@ -54,26 +54,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         actions: [   
-          Container(
-            color: Color.fromARGB(255, 62, 69, 195),
-            padding: EdgeInsets.all(20),
-            child: DropdownButton(
-              hint: Text('select'),
-              value: selectedItem,
-              onChanged: (newValue) {
-                setState(() {
-                  selectedItem = newValue as String;
-                });
-              },
-              items: listitem.map((valueItem) {
-                return DropdownMenuItem(
-                  value: valueItem,
-                  child: Text(valueItem),
-                );
-              }).toList(),
-              style: TextStyle(color: Color.fromARGB(255, 255, 0, 0)), // Change font color
-            ),
-          ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
