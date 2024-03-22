@@ -16,11 +16,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   Map<String, double> dataMap = {
-    "yello alert":33.33  ,
+    "yellow alert": 33.33,
     "red alert": 45.83,
     "green alert": 20.83,
   };
@@ -31,32 +36,42 @@ class HomePage extends StatelessWidget {
     Color.fromARGB(255, 95, 167, 108),
   ];
 
+  String valueChoose = "";
+  List<String> listitem = ["home","workspace","villa"];
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        title: DropdownButton<String>(
-          
-          items: <String>['Home', 'Work place', 'Somewhere']
-              .map((String value) {
-            return DropdownMenuItem<String>(
-
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          onChanged: (String? newValue) {
-            // Handle dropdown item selection here
-          },
-        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pushNamed(context, '/signIn');
           },
         ),
-        actions: [
+        actions: [   
+          Container(
+            color: Color.fromARGB(255, 62, 69, 195),
+            padding: EdgeInsets.all(20),
+            child: DropdownButton(
+              hint: Text('select'),
+              value: selectedItem,
+              onChanged: (newValue) {
+                setState(() {
+                  selectedItem = newValue as String;
+                });
+              },
+              items: listitem.map((valueItem) {
+                return DropdownMenuItem(
+                  value: valueItem,
+                  child: Text(valueItem),
+                );
+              }).toList(),
+              style: TextStyle(color: Color.fromARGB(255, 255, 0, 0)), // Change font color
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
