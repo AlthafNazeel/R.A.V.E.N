@@ -119,8 +119,10 @@ class _VideoAppState extends State<VideoApp> {
                       _buildDetailRow(
                         context,
                         label: 'Time:',
-                        value: '${DateTime.now().hour}:${DateTime.now().minute}',
+                        value:
+                            '${DateTime.now().hour}:${DateTime.now().minute}',
                       ),
+                      
 
                       SizedBox(height: 8),
                       
