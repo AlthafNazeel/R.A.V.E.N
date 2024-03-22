@@ -3,28 +3,40 @@ import 'package:raven_frontend/components/color.dart';
 import 'package:raven_frontend/components/onboarding_data.dart';
 
 
+
 //import 'package:get/get.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: OnboardingScreen(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: OnboardingPage(),
     );
   }
 }
 
 class OnboardingPage extends StatefulWidget {
-  //const OnboardingPage({Key? key, key}) : super(key: key);
+  const OnboardingPage({Key? key, key}) : super(key: key);
 
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  final controller = OnboardingData();
+  final pageController = PageController();
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
           body(),
           buildDots(),
@@ -59,7 +71,7 @@ class OnboardingPage extends StatefulWidget {
                    Text(controller.items[currentIndex].title,
                      style: const TextStyle(
                       fontSize: 25,
-                      //color: primaryColor,
+                      color: primaryColor,
                       fontWeight: FontWeight.bold),
 
 
@@ -69,7 +81,7 @@ class OnboardingPage extends StatefulWidget {
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 25),
                      child: Text(controller.items[currentIndex].description,
-                       style: const TextStyle(color: Color.fromARGB(255, 68, 67, 71),fontSize: 16),textAlign: TextAlign.center,),
+                       style: const TextStyle(color: Color.fromARGB(255, 100, 98, 98),fontSize: 16),textAlign: TextAlign.center,),
                    ),
 
                  ],
@@ -88,7 +100,7 @@ class OnboardingPage extends StatefulWidget {
           margin: const EdgeInsets.symmetric(horizontal: 2),
           decoration:   BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: currentIndex == index? primaryColor : Colors.grey,
+            color: currentIndex == index? primaryColor : Color.fromARGB(255, 49, 19, 62),
           ),
           height: 7,
           width: currentIndex == index? 30 : 7,
@@ -104,7 +116,7 @@ class OnboardingPage extends StatefulWidget {
       height: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: primaryColor,
+        //color: primaryColor
       ),
 
       child: TextButton(
@@ -114,8 +126,7 @@ class OnboardingPage extends StatefulWidget {
           });
         },
         child: Text(currentIndex == controller.items.length -1? "Get started" : "Continue",
-          style: const TextStyle(color: Color.fromARGB(255, 218, 202, 225)),),
-        ],
+          style: const TextStyle(color: Colors.white),),
       ),
     );
   }
