@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/components/color.dart';
 import 'package:raven_frontend/components/onboarding_data.dart';
 
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key? key, key}) : super(key: key);
+  //const OnboardingPage({Key? key, key}) : super(key: key);
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
@@ -79,7 +80,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 25),
                      child: Text(controller.items[currentIndex].description,
-                       style: const TextStyle(color: Colors.grey,fontSize: 16),textAlign: TextAlign.center,),
+                       style: const TextStyle(color: Color.fromARGB(255, 68, 67, 71),fontSize: 16),textAlign: TextAlign.center,),
                    ),
 
                  ],
@@ -98,7 +99,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           margin: const EdgeInsets.symmetric(horizontal: 2),
           decoration:   BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            //color: currentIndex == index? primaryColor : Colors.grey,
+            color: currentIndex == index? primaryColor : Colors.grey,
           ),
           height: 7,
           width: currentIndex == index? 30 : 7,
@@ -114,7 +115,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       height: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        //color: primaryColor
+        color: primaryColor,
       ),
 
       child: TextButton(
@@ -124,7 +125,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           });
         },
         child: Text(currentIndex == controller.items.length -1? "Get started" : "Continue",
-          style: const TextStyle(color: Colors.white),),
+          style: const TextStyle(color: Color.fromARGB(255, 218, 202, 225)),),
       ),
     );
   }
