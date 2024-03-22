@@ -33,7 +33,10 @@ class FirebaseUtils:
 
         document_id = self.update_database(title, body, priority, data["videoUrl"])
         data["id"] = document_id
-        devices = self.get_devices()
+        # devices = self.get_devices()
+        devices = [
+            "dGRx6OBvSK2MN0vxbuV00H:APA91bF2zG01PxxFa2hNYfiGC_pBKcP2A-Orlma3T0_VcRwYLP-_-94zHmj26uZpO8Yxqc-erlTQ90mk-L5fZwy_Khd_2B9eYLOcvHejtCU878oRA1AfHwgrwPC7DJDpp-ZHp2Q0f03g"
+        ]
 
         for d in devices:
             message = messaging.Message(
@@ -87,5 +90,4 @@ class FirebaseUtils:
 
         if doc_snapshot.exists:
             document_data = doc_snapshot.to_dict()
-            print(document_data)
             return document_data["tokenIDs"]

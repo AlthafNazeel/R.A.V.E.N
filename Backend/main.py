@@ -9,15 +9,15 @@ def main():
     firebase = FirebaseUtils("ADiWRUE96Mjyzgx41HHh")
     camera = WebCam()
 
-    # link = firebase.upload_clip("test.mp4", "test2")
+    link = firebase.upload_clip("a.mp4", "a")
     # # firebase.update_database("Hello There", "ICUP", 2, link)
     # print(link)
-    # print("Send Notification")
+    print("Send Notification")
 
     firebase.send_notification(
         "You cant see me",
         "John Cena",
-        {"videoUrl": "link"},
+        {"videoUrl": link},
         2,
     )
 

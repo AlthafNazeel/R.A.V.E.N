@@ -227,8 +227,8 @@ class Alert extends StatelessWidget {
     final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
 
     final videoUrl = message.data['videoUrl'] as String;
-    final title = message.data['title'] as String;
-    final subtitle = message.data['subtitle'] as String;
+    // final title = message.data['title'] as String;
+    // final subtitle = message.data['subtitle'] as String;
     // final priority = message.data['priority'] as int;
 
     final id = message.data['id'] as String;
