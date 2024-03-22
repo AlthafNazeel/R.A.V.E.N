@@ -59,10 +59,10 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             child: DropdownButton(
               hint: Text('select'),
-              value: selectedItem,
+              // value: selectedItem,
               onChanged: (newValue) {
                 setState(() {
-                  selectedItem = newValue as String;
+                  // selectedItem = newValue as String;
                 });
               },
               items: listitem.map((valueItem) {

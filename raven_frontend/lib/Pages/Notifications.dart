@@ -56,66 +56,103 @@ class _NotificationsPageState extends State<NotificationsPageE> {
         ],
       ),
       body: FutureBuilder(
-        future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
-        builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            List<Map<String, dynamic>> notifications = snapshot.data!;
+  future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
+  builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (snapshot.hasError) {
+      return Center(child: Text('Error: ${snapshot.error}'));
+    } else {
+      List<Map<String, dynamic>> notifications = snapshot.data!;
 
-            // Filter notifications based on the selected filter
-            notifications = filterData(notifications, filter);
+      // Filter notifications based on the selected filter
+      notifications = filterData(notifications, filter);
 
-            return ListView.builder(
-              itemCount: notifications.length,
-              itemBuilder: (context, index) {
-                final notification = notifications[index];
-                final documentId = notification['id'];
-                final title = notification['data']['title'] ?? 'No Title';
-                final subtitle =
-                    notification['data']['subtitle'] ?? 'No Subtitle';
-                final time = notification['data']['time'] != null
-                    ? DateFormat('hh:mm:ss')
-                        .format(notification['data']['time'].toDate())
-                    : 'No Time';
-                final isRead = notification['data']['isRead'] ?? false;
+      // Sort notifications by timestamp in descending order
+      notifications.sort((a, b) {
+        final aTime = a['data']['time'] != null ? a['data']['time'].toDate() : DateTime(0);
+        final bTime = b['data']['time'] != null ? b['data']['time'].toDate() : DateTime(0);
+        return bTime.compareTo(aTime);
+      });
 
-                final link = notification['data']['link'];
+      // Group notifications by day
+      Map<String, List<Map<String, dynamic>>> groupedNotifications = {};
+      notifications.forEach((notification) {
+        final timestamp = notification['data']['time'] != null ? notification['data']['time'].toDate() : DateTime(0);
+        final day = timestamp.day;
+        final month = timestamp.month;
+        final year = timestamp.year;
+        final key = DateTime(year, month, day).toString(); // Grouping key as string
+        if (!groupedNotifications.containsKey(key)) {
+          groupedNotifications[key] = [];
+        }
+        groupedNotifications[key]!.add(notification);
+      });
 
-                return NotificationTile(
-                  title: title,
-                  subtitle: subtitle,
-                  time: time,
-                  isRead: isRead,
-                  onTap: () {
-                    // api.markNotificationAsRead(documentId);
-                    setState(() {});
-                    navigatorKey.currentState?.pushNamed(
-                      "/notification_screen",
-                      arguments: RemoteMessage(
-                        data: {
-                          "videoUrl": link,
-                          "id": documentId,
-                          "title": title,
-                          "subtitle": subtitle,
-                        },
-                      ),
-                    );
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => Alert(),
-                    //   ),
-                    // );
-                  },
-                );
-              },
-            );
-          }
-        },
-      ),
+      return ListView(
+        children: groupedNotifications.keys.map((key) {
+          final List<Map<String, dynamic>> notificationsForDay = groupedNotifications[key]!;
+          final DateTime dateTime = DateTime.parse(key);
+          final bool isToday = DateTime.now().day == dateTime.day &&
+              DateTime.now().month == dateTime.month &&
+              DateTime.now().year == dateTime.year;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  isToday ? 'Today' : DateFormat('MMM d, y').format(dateTime),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                itemCount: notificationsForDay.length,
+                itemBuilder: (context, index) {
+                  final notification = notificationsForDay[index];
+                  final documentId = notification['id'];
+                  final title = notification['data']['title'] ?? 'No Title';
+                  final subtitle = notification['data']['subtitle'] ?? 'No Subtitle';
+                  final time = notification['data']['time'] != null
+                      ? DateFormat('hh:mm:ss').format(notification['data']['time'].toDate())
+                      : 'No Time';
+                  final isRead = notification['data']['isRead'] ?? false;
+                  final link = notification['data']['link'];
+
+                  return NotificationTile(
+                    title: title,
+                    subtitle: subtitle,
+                    time: time,
+                    isRead: isRead,
+                    onTap: () {
+                      setState(() {});
+                      navigatorKey.currentState?.pushNamed(
+                        "/notification_screen",
+                        arguments: RemoteMessage(
+                          data: {
+                            "videoUrl": link,
+                            "id": documentId,
+                            "title": title,
+                            "subtitle": subtitle,
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          );
+        }).toList(),
+      );
+    }
+  },
+),
+
+
     );
   }
 

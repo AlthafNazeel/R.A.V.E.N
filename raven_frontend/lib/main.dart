@@ -25,20 +25,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp( 
 
       debugShowCheckedModeBanner: false,
       home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
-        '/navbar':(context) => NavBar(),
+        // '/navbar':(context) => NavBar(),
         '/notification_screen': (context) =>  const Alert(),
-        '/SettingsPage': (context) => Settings(),
+        // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
          // ignore: prefer_const_constructors
-         '/GetStartedPage': (context) => OnboardingScreen(),
+        //  '/GetStartedPage': (context) => OnboardingScreen(),
         // '/Notifications': (context) => NotificationsPage(),
      
         '/Notifications': (context) => const NotificationsPageE(),
