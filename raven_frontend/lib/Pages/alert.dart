@@ -1,11 +1,10 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:video_player/video_player.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Alert(),
   ));
@@ -41,7 +40,7 @@ class _VideoAppState extends State<VideoApp> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             AspectRatio(
-              aspectRatio: 11 / 11, 
+              aspectRatio: 11 / 11,
               child: Stack(
                 children: [
                   _controller.value.isInitialized
@@ -49,7 +48,7 @@ class _VideoAppState extends State<VideoApp> {
                           aspectRatio: _controller.value.aspectRatio,
                           child: VideoPlayer(_controller),
                         )
-                      : Center(child: CircularProgressIndicator()),
+                      : const Center(child: CircularProgressIndicator()),
                   Positioned.fill(
                     child: Container(
                       decoration: BoxDecoration(
@@ -64,7 +63,7 @@ class _VideoAppState extends State<VideoApp> {
                               size: 50,
                               color: Colors.purple[100],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               'Tap to Play Video',
                               style: TextStyle(
@@ -80,20 +79,20 @@ class _VideoAppState extends State<VideoApp> {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.purple.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Alert Information',
                         style: TextStyle(
                           color: Colors.black87,
@@ -101,20 +100,28 @@ class _VideoAppState extends State<VideoApp> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 18),
+                      const SizedBox(height: 18),
                       _buildDetailRow(
                         context,
                         label: 'Title:',
-                        value: ModalRoute.of(context)!.settings.arguments != null
-                            ? (ModalRoute.of(context)!.settings.arguments as RemoteMessage).data['title'] ?? 'Default Title'
-                            : 'Default Title',
+                        value:
+                            ModalRoute.of(context)!.settings.arguments != null
+                                ? (ModalRoute.of(context)!.settings.arguments
+                                            as RemoteMessage)
+                                        .data['title'] ??
+                                    'Default Title'
+                                : 'Default Title',
                       ),
                       _buildDetailRow(
                         context,
                         label: 'Camera:',
-                        value: ModalRoute.of(context)!.settings.arguments != null
-                            ? (ModalRoute.of(context)!.settings.arguments as RemoteMessage).data['subtitle'] ?? 'Default Subtitle'
-                            : 'Default Subtitle',
+                        value:
+                            ModalRoute.of(context)!.settings.arguments != null
+                                ? (ModalRoute.of(context)!.settings.arguments
+                                            as RemoteMessage)
+                                        .data['subtitle'] ??
+                                    'Default Subtitle'
+                                : 'Default Subtitle',
                       ),
                       _buildDetailRow(
                         context,
@@ -132,38 +139,36 @@ class _VideoAppState extends State<VideoApp> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                      padding: EdgeInsets.symmetric(horizontal: 58, vertical: 12),
+                      backgroundColor: Colors.red,
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 58, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Send Alert',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      padding: EdgeInsets.symmetric(horizontal: 73, vertical: 12),
+                      backgroundColor: Colors.green,
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 73, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Ignore',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -177,34 +182,35 @@ class _VideoAppState extends State<VideoApp> {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context, {required String label, required String value}) {
+  Widget _buildDetailRow(BuildContext context,
+      {required String label, required String value}) {
     return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SizedBox(height: 25), // Add space above the row
-      Row(
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 24,
-            ),
-          ),
-          SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              value,
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 21,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 25), // Add space above the row
+        Row(
+          children: [
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 24,
               ),
             ),
-          ),
-        ],
-      ),
-    ],
-  );
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.black54,
+                  fontSize: 21,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
   @override
@@ -215,7 +221,7 @@ class _VideoAppState extends State<VideoApp> {
 }
 
 class Alert extends StatelessWidget {
-  const Alert({Key? key});
+  const Alert({Key? key, Key? key2}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -223,8 +229,8 @@ class Alert extends StatelessWidget {
     final message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
 
     final videoUrl = message.data['videoUrl'] as String;
-    final title = message.data['title'] as String;
-    final subtitle = message.data['subtitle'] as String;
+    // final title = message.data['title'] as String;
+    // final subtitle = message.data['subtitle'] as String;
     // final priority = message.data['priority'] as int;
 
     final id = message.data['id'] as String;
@@ -233,4 +239,3 @@ class Alert extends StatelessWidget {
     return VideoApp(videoUrl: videoUrl);
   }
 }
-

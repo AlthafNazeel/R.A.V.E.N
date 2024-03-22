@@ -8,6 +8,34 @@ height = 720
 cam_no = 1
 
 
+class RTSPCamera:
+    def __init__(
+        self, rtsp_username, rtsp_password, rtsp_ip, channel, width=1280, height=720
+    ):
+        self.rtsp_url = f"rtsp://{rtsp_username}:{rtsp_password}@{rtsp_ip}:554/Streaming/channels/{channel}01"
+        self.width = width
+        self.height = height
+        self.cam = self.create_camera()
+
+    def create_camera(self):
+        cap = cv2.VideoCapture()
+        cap.open(self.rtsp_url)
+        cap.set(3, self.width)
+        cap.set(4, self.height)
+        cap.set(10, 100)
+        return cap
+
+    def get_frame(self):
+        success, frame = self.cam.read()
+        if success:
+            dim = (self.width, self.height)
+            return cv2.resize(frame, dim, interpolation=cv2.INTER_AREA)
+        return None
+
+    def release(self):
+        self.cam.release()
+
+
 def create_camera(channel):
     rtsp = (
         "rtsp://"

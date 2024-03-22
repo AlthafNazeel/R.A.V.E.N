@@ -1,18 +1,19 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/Pages/alert.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:intl/intl.dart';
 import 'package:raven_frontend/main.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NotificationsPageE(),
     );
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class NotificationsPageE extends StatefulWidget {
+  const NotificationsPageE({Key? key}) : super(key: key);
+
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
 }
@@ -32,15 +35,15 @@ class _NotificationsPageState extends State<NotificationsPageE> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text(
             'Notifications',
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 41, 29, 46),
+        backgroundColor: const Color.fromARGB(255, 41, 29, 46),
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
+          icon: const Icon(Icons.menu, color: Colors.white),
           onPressed: () {
             // code to open menu
           },
@@ -56,7 +59,7 @@ class _NotificationsPageState extends State<NotificationsPageE> {
         future: api.getNotificationData("ADiWRUE96Mjyzgx41HHh"),
         builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
@@ -166,13 +169,13 @@ class NotificationTile extends StatelessWidget {
   final bool isRead;
   final VoidCallback onTap;
 
-  const NotificationTile({
+  const NotificationTile({Key? key, 
     required this.title,
     required this.subtitle,
     required this.time,
     required this.isRead,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
