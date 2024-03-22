@@ -41,7 +41,8 @@ class FirebaseApi {
       if (documentSnapshot.exists) {
         if (documentSnapshot.get("password") == pwd) {
           await db.collection("Servers").doc(serverID).update({
-            "tokenIDs": FieldValue.arrayUnion([fCMToken]),
+            "tokenIDs":
+                FieldValue.arrayUnion([await _firebaseMessaging.getToken()]),
           });
           print("${documentSnapshot.id} => ${documentSnapshot.data()}");
         } else {
@@ -60,7 +61,7 @@ class FirebaseApi {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Notifications")
-          // .collection("NewNotifications") 
+          // .collection("NewNotifications")
           .where("serverID", isEqualTo: serverID)
           .get();
 
