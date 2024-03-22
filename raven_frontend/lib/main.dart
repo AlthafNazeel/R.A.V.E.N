@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: NavBar(),
+      home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
         '/navbar':(context) => NavBar(),
