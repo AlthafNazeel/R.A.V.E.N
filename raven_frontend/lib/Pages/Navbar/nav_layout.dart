@@ -10,7 +10,7 @@ import 'package:raven_frontend/Pages/homePage.dart';
     return Stack(
       children: <Widget>[
         HomePage(),
-        NavBar(),
+        const NavBar(),
         ],
     );
   }
