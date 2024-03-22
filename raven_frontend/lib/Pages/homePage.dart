@@ -3,10 +3,12 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,9 +33,9 @@ class _HomePageState extends State<HomePage> {
   };
 
   List<Color> colorlist = [
-    Color.fromRGBO(240, 240, 65, 1),
-    Color.fromRGBO(255, 76, 76, 1),
-    Color.fromARGB(255, 95, 167, 108),
+    const Color.fromRGBO(240, 240, 65, 1),
+    const Color.fromRGBO(255, 76, 76, 1),
+    const Color.fromARGB(255, 95, 167, 108),
   ];
 
   String valueChoose = "";
@@ -88,20 +90,20 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
         // resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: Center(
         child: Container(
-          color: Color.fromARGB(255, 16, 16, 16),
-          padding: EdgeInsets.all(20),
+          color: const Color.fromARGB(255, 16, 16, 16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               // Pie Chart Container
               Container(
                  decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 219, 217, 217),
+                  color: const Color.fromARGB(255, 219, 217, 217),
                 ),
-                padding: EdgeInsets.all(20), 
+                padding: const EdgeInsets.all(20), 
                 child: Column(
                   children: [
                     // PieChart widget
@@ -112,14 +114,14 @@ class _HomePageState extends State<HomePage> {
                       centerText: "Alerts",
                       chartType: ChartType.ring,
                       ringStrokeWidth: 20,
-                      chartValuesOptions: ChartValuesOptions(
+                      chartValuesOptions: const ChartValuesOptions(
                         showChartValuesInPercentage: true,
                         showChartValues: false,
                         
                       ),
-                      legendOptions: LegendOptions(showLegends: false),
+                      legendOptions: const LegendOptions(showLegends: false),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
 
                     // Text Containers with Vertical Dividers
                     Row(
@@ -128,16 +130,16 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           width: 80, 
                           height: 80, 
-                          margin: EdgeInsets.only(left: 25),
+                          margin: const EdgeInsets.only(left: 25),
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 76, 76, 1),
+                            color: const Color.fromRGBO(255, 76, 76, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
                             child: Text("11", style: AppFonts.piechart()),
                           ),
                         ),
-                        VerticalDivider(
+                        const VerticalDivider(
                           color: Color.fromARGB(255, 123, 18, 18),
                           thickness: 10,
                           indent: 10,
@@ -147,23 +149,23 @@ class _HomePageState extends State<HomePage> {
                           width: 80, 
                           height: 80, 
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(240, 240, 65, 1),
+                            color: const Color.fromRGBO(240, 240, 65, 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
                             child: Text("8", style: AppFonts.piechart()),
                           ),
                         ),
-                        VerticalDivider(
+                        const VerticalDivider(
                           color: Color.fromARGB(255, 0, 0, 0),
                           thickness: 5,
                         ),
                         Container(
                           width: 80, 
                           height: 80,  
-                          margin: EdgeInsets.only(right: 25),
+                          margin: const EdgeInsets.only(right: 25),
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 95, 167, 108),
+                            color: const Color.fromARGB(255, 95, 167, 108),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
@@ -175,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
 
               ElevatedButton(
                 onPressed: () {
@@ -183,13 +185,13 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pushNamed(context, '/add_device');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:Color.fromARGB(255, 101, 36, 120), // Set the button color
+                  backgroundColor:const Color.fromARGB(255, 101, 36, 120), // Set the button color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // Set the border radius
                   ),
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 70,
                     vertical: 8,
                   ),

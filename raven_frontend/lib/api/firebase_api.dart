@@ -60,7 +60,7 @@ class FirebaseApi {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Notifications")
-          // .collection("NewNotifications") 
+          // .collection("NewNotifications")
           .where("serverID", isEqualTo: serverID)
           .get();
 

@@ -30,20 +30,20 @@ class CustomTextField extends StatelessWidget {
       // ),
       child: TextField(
         cursorColor: cursorColor,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           fillColor: Colors.transparent,
-          contentPadding: EdgeInsets.only(left: 25.0),
+          contentPadding: const EdgeInsets.only(left: 25.0),
           labelText: label,
           hintText: hint,
           labelStyle: AppFonts.bodyTextFont(),
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Color.fromARGB(255, 146, 146, 146),
             fontSize: 14.0,
           ),
           prefixIcon: Icon(icon, color: cursorColor, size: 18),
-          enabledBorder: UnderlineInputBorder(
-            borderSide : BorderSide (color: const Color.fromARGB(255, 0, 0, 0), width: 2),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide : BorderSide (color: Color.fromARGB(255, 0, 0, 0), width: 2),
             // borderRadius: BorderRadius.circular(1.0),
           ),
           floatingLabelStyle: TextStyle(

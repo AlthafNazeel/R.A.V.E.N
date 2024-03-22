@@ -31086,6 +31086,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
+<<<<<<< HEAD
 material_color_utilities
 
 
@@ -31281,6 +31282,8 @@ material_color_utilities
    limitations under the License.
 
 --------------------------------------------------------------------------------
+=======
+>>>>>>> 95649b2b69d413b0f9b0783f492d9c8b2ee0d843
 perfetto
 
 Apache License
@@ -33416,6 +33419,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------------
+<<<<<<< HEAD
 skia
 
 Copyright 2024 Google Inc.
@@ -33480,6 +33484,8 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------------
+=======
+>>>>>>> 95649b2b69d413b0f9b0783f492d9c8b2ee0d843
 smooth_page_indicator
 
 MIT License
