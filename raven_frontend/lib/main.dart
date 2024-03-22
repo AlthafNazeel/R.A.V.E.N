@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: const NavBar(),
+      home: NavBar(),
       navigatorKey: navigatorKey,
       routes: {
-        '/navbar':(context) => const NavBar(),
+        '/navbar':(context) => NavBar(),
         '/notification_screen': (context) =>  const Alert(),
         // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
