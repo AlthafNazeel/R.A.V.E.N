@@ -35,7 +35,7 @@ class FirebaseUtils:
         data["id"] = document_id
         # devices = self.get_devices()
         devices = [
-            "dGRx6OBvSK2MN0vxbuV00H:APA91bF2zG01PxxFa2hNYfiGC_pBKcP2A-Orlma3T0_VcRwYLP-_-94zHmj26uZpO8Yxqc-erlTQ90mk-L5fZwy_Khd_2B9eYLOcvHejtCU878oRA1AfHwgrwPC7DJDpp-ZHp2Q0f03g"
+            "ek00sNFHSCWjgSD-aCJ8yR:APA91bE4RLwXZppPMcKg95gsqWB0H4KSGkLPxzIZRCDUN_6bQVrioiQKXvuuhKQ2K_ryMEoZ-q3pZL7ZBHaeJuG-OczP1zsFvoh150lHGW2mHmATLD363JBs5S5rbV6Q9heNSu4kAu3f"
         ]
 
         for d in devices:
