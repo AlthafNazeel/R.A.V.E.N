@@ -2,22 +2,25 @@
 
 import 'package:flutter/material.dart';
  import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'dart:async';
-//import '../bloc.navigation_bloc/navigation_bloc.dart';
+
 import 'package:rxdart/rxdart.dart';
 import 'package:raven_frontend/Pages/Navbar/navItem.dart';
 
 
 class NavBar extends StatefulWidget {
-  @override
-  _NavBarState createState() => _NavBarState;
+  const NavBar({Key? key}) : super(key: key);
+
+@override
+  _NavBarState createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<NavBar>{
-  AnimationController _animationController;
-  Stream<bool> isNavBarOpenedStream;
-  StreamController<bool> isNavBarOpenedStreamController;
-  StreamSink<bool> isNavBarOpenedSink;
+  late AnimationController _animationController;
+  late Stream<bool> isNavBarOpenedStream;
+  late StreamController<bool> isNavBarOpenedStreamController;
+  late StreamSink<bool> isNavBarOpenedSink;
   final _animationDuration = const Duration(milliseconds: 500);
 
   @override
@@ -64,8 +67,9 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
           duration: _animationDuration,
           top: 0,
           bottom: 0,
-          left: isNavBarOpenedAsync.data ? 0: -screenWidth,
-          right: isNavBarOpenedAsync.data ? 0: screenWidth -50,
+          left: isNavBarOpenedAsync.data ?? false ? 0 : -screenWidth, // Using null-aware operator '?'
+          right: isNavBarOpenedAsync.data ?? false ? 0 : screenWidth - 50, // Using null-aware operator '?'
+      
           child: Row(
             children: <Widget>[
               Expanded(
@@ -74,18 +78,19 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                   color: Color.fromARGB(253, 59, 41, 100) ,
                   child: Column(
                     children: <Widget>[
-                      // ignore: prefer_const_constructors
+                      
                       SizedBox(
                         height: 100,
                       ),
-                      // ignore: prefer_const_constructors
+                      
                       ListTile(
                         title: Text(
-                          "Prateek",
+                          "Oshadhi",
                           style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
                         ),
+
                         subtitle: Text(
-                          "www.techieblossom.com",
+                          "www.raven.com",
                           style: TextStyle(
                             color: Color(0xFF1BB5FD),
                             fontSize: 18,
@@ -132,7 +137,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                       ),
                       NavItem(
                         icon: Icons.card_giftcard,
-                        title: "Wishlist",
+                        title: "Wishlist", onTap: () {  },
                       ),
                       Divider(
                         height: 64,
@@ -143,22 +148,22 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin<Nav
                       ),
                       NavItem(
                         icon: Icons.settings,
-                        title: "Settings",
+                        title: "Settings", onTap: () {  },
                       ),
                       NavItem(
                         icon: Icons.exit_to_app,
-                        title: "Logout",
+                        title: "Logout", onTap: () {  },
                       ),
                     ],
                   ),
                 ),
               ),
               Align(
-                // ignore: prefer_const_constructors
+                
                 alignment: Alignment(0, -0.9),
                 child: GestureDetector(
                   onTap: (){
-                    onIconPressed()
+                    onIconPressed();
                   },
                   child: ClipPath(
                     clipper: CustomNavClipper(),
