@@ -28,17 +28,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: NavBar(),
+      home: NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
         '/navbar':(context) => NavBar(),
         '/notification_screen': (context) =>  const Alert(),
-        // '/SettingsPage': (context) => Settings(),
+        '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
         '/add_device': (context) => const AddDevice(),
          // ignore: prefer_const_constructors
-         '/GetStartedPage': (context) => OnboardingPage(),
+         '/GetStartedPage': (context) => OnboardingScreen(),
         // '/Notifications': (context) => NotificationsPage(),
      
         '/Notifications': (context) => const NotificationsPageE(),

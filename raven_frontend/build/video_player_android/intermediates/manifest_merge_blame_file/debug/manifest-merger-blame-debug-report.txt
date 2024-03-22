@@ -4,8 +4,14 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="16"
+<<<<<<< HEAD
+6-->C:\Users\Aadil Naji\AppData\Local\Pub\Cache\hosted\pub.dev\video_player_android-2.4.12\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="16" />
+7-->C:\Users\Aadil Naji\AppData\Local\Pub\Cache\hosted\pub.dev\video_player_android-2.4.12\android\src\main\AndroidManifest.xml
+=======
 6-->C:\Users\ibrah\AppData\Local\Pub\Cache\hosted\pub.dev\video_player_android-2.4.12\android\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="16" />
 7-->C:\Users\ibrah\AppData\Local\Pub\Cache\hosted\pub.dev\video_player_android-2.4.12\android\src\main\AndroidManifest.xml
+>>>>>>> 95649b2b69d413b0f9b0783f492d9c8b2ee0d843
 8
 9</manifest>

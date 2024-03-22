@@ -129,7 +129,10 @@ class _VideoAppState extends State<VideoApp> {
                         value:
                             '${DateTime.now().hour}:${DateTime.now().minute}',
                       ),
-                      const SizedBox(height: 8),
+                      
+
+                      SizedBox(height: 8),
+                      
                     ],
                   ),
                 ),
@@ -218,7 +221,7 @@ class _VideoAppState extends State<VideoApp> {
 }
 
 class Alert extends StatelessWidget {
-  const Alert({Key? key, Key? key}) : super(key: key);
+  const Alert({Key? key, Key? key2}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

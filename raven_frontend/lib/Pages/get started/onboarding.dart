@@ -6,17 +6,14 @@ import 'package:raven_frontend/components/onboarding_data.dart';
 //import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingPage(),
+    return MaterialApp(
+      home: OnboardingScreen(),
     );
   }
 }
@@ -25,17 +22,9 @@ class OnboardingPage extends StatefulWidget {
   //const OnboardingPage({Key? key, key}) : super(key: key);
 
   @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
-}
-
-class _OnboardingPageState extends State<OnboardingPage> {
-  final controller = OnboardingData();
-  final pageController = PageController();
-  int currentIndex = 0;
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
           body(),
           buildDots(),
@@ -126,6 +115,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         },
         child: Text(currentIndex == controller.items.length -1? "Get started" : "Continue",
           style: const TextStyle(color: Color.fromARGB(255, 218, 202, 225)),),
+        ],
       ),
     );
   }

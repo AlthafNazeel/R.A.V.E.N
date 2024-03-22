@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 void main() {
   runApp( const MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -67,15 +68,10 @@ class Settings extends StatelessWidget {
                       color: Color.fromARGB(255, 0, 0, 0),
                     ) ,
                   ),
-        
-                
-                
-        
-                // const SizedBox(height: 30),//space box from top
-        
+
                 AccountOption(context,'Language'),
                 // const SizedBox(height: 20),//space box from top
-                AccountOption(context,'Appearance'),
+                // AccountOption(context,'Appearance'),
                 // const SizedBox(height: 20),//space box from top
                 AccountOption(context,'Notification'),
                 // const SizedBox(height: 20),//space box from top
@@ -85,8 +81,7 @@ class Settings extends StatelessWidget {
                 ),
                 AccountOption(context,'Logout'),
         
-              ],
-              
+              ],             
             ),
         ),
       ),
