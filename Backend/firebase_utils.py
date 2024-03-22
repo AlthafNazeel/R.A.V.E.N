@@ -33,10 +33,7 @@ class FirebaseUtils:
 
         document_id = self.update_database(title, body, priority, data["videoUrl"])
         data["id"] = document_id
-        # devices = self.get_devices()
-        devices = [
-            "ek00sNFHSCWjgSD-aCJ8yR:APA91bE4RLwXZppPMcKg95gsqWB0H4KSGkLPxzIZRCDUN_6bQVrioiQKXvuuhKQ2K_ryMEoZ-q3pZL7ZBHaeJuG-OczP1zsFvoh150lHGW2mHmATLD363JBs5S5rbV6Q9heNSu4kAu3f"
-        ]
+        devices = self.get_devices()
 
         for d in devices:
             message = messaging.Message(

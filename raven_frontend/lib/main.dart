@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/Pages/Navbar/navbar.dart';
+import 'package:raven_frontend/Pages/SettingsPage.dart';
 import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 import 'package:raven_frontend/Pages/alert.dart';
 import 'package:raven_frontend/Pages/signInPage.dart';

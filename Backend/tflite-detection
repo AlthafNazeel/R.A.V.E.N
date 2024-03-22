@@ -5,6 +5,7 @@ import numpy as np
 import os
 import tensorflow_hub as hub
 import time
+from firebase_utils import FirebaseUtils
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -34,6 +35,8 @@ cv2.resizeWindow("MultiPose Estimation", window_width, window_height)
 # Initialize variables for emergency detection and notification outside the loop
 emergency_detected = False
 last_notification_time = time.time()
+
+firebase = FirebaseUtils("ADiWRUE96Mjyzgx41HHh")
 
 # Functions to Define
 def draw_keypoints(frame, keypoints, confidence_threshold):
@@ -78,27 +81,13 @@ def draw_connections(frame, keypoints, edges, confidence_threshold):
         if (c1 > confidence_threshold) & (c2 > confidence_threshold):
             cv2.line(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 0, 0), 2)  # Decreased line thickness
 
+
 def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshold):
     for person in keypoints_with_scores:
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
-while True:
-    ret, frame = cap.read()
-
-    if not ret:
-        break
-
-    img = frame.copy()
-    img = tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 160, 288)
-    input_img = tf.cast(img, dtype=tf.int32)
-
-    results = movenet(input_img)
-    keypoints_with_scores = results['output_0'].numpy()[:, :, :51].reshape((6, 17, 3))
-
-    loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
-
-    def detect_emergency(keypoints_with_scores, threshold=0.2):
+def detect_emergency(keypoints_with_scores, threshold=0.2):
         global emergency_detected, last_notification_time
 
         if not emergency_detected:
@@ -116,14 +105,73 @@ while True:
         else:
             # Check if 2 minutes (120 seconds) have passed since the last notification
             current_time = time.time()
-            if current_time - last_notification_time >= 120:
+            if current_time - last_notification_time >= 60:
                 emergency_detected = False
 
         return False
 
+def record_webcam(duration=10, output_filename='webcam_output.avi', fps=30):
+        if not cap.isOpened():
+            print("Error opening webcam")
+            return
+
+        frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+        # Define the codec and create a VideoWriter object
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        out = cv2.VideoWriter(file_path +"/" + output_filename, fourcc, fps, (frame_width, frame_height))
+
+        start_time = time.time()
+        while time.time() - start_time <= duration:
+            ret, frame = cap.read()
+
+            if not ret:
+                print("Error reading frame")
+                break
+
+            # Write the frame to the output video file
+            out.write(frame)
+
+            cv2.imshow('Webcam Recording', frame)
+
+            # Press 'q' to stop recording manually
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        # Release resources
+        cap.release()
+        out.release()
+        print("Video Saved")
+
+
+while True:
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    img = frame.copy()
+    img = tf.image.resize_with_pad(tf.expand_dims(img, axis=0), 160, 288)
+    input_img = tf.cast(img, dtype=tf.int32)
+
+    results = movenet(input_img)
+    keypoints_with_scores = results['output_0'].numpy()[:, :, :51].reshape((6, 17, 3))
+
+    loop_through_people(frame, keypoints_with_scores, EDGES, 0.1)
+
     if detect_emergency(keypoints_with_scores):
         print("Emergency detected (hands raised)")
+        record_webcam()
         cv2.putText(frame, "Emergency detected (hands raised)", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        link = firebase.upload_clip("webcam_output.avi", "ml test")
+        firebase.send_notification(
+        "Its working",
+        "Finalllyyyyyyy!!!!",
+        {"videoUrl": link},
+        2,
+    )
 
     cv2.imshow('MultiPose Estimation', frame)
 
