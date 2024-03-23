@@ -29,6 +29,8 @@ class FirebaseUtils:
         # Retrieve devices associated with the server from Firestore
         self.get_devices()
 
+        self.bucket = storage.bucket()
+
     def send_notification(self, title, body, data, priority) -> Any:
 
         document_id = self.update_database(title, body, priority, data["videoUrl"])
@@ -54,8 +56,7 @@ class FirebaseUtils:
         path = os.path.join(self.file_path, path)
 
         # Stores the clip into Firebase Storage
-        bucket = storage.bucket()
-        blob = bucket.blob(name)
+        blob = self.bucket.blob(name)
         blob.upload_from_filename(path)
 
         # Set the access control list (ACL) of the blob to public-read
@@ -63,7 +64,7 @@ class FirebaseUtils:
         blob.acl.save()
 
         # Return the public URL of the uploaded file
-        return blob.public_url
+        # return blob.public_url
 
     def update_database(self, title, body, priority, link):
         doc_ref = self.db.collection("Notifications").document()
