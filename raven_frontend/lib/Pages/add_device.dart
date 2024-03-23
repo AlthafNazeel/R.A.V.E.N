@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 
 void main() {
@@ -28,7 +29,7 @@ MyTextField(String label, String hint) {
   // }
 }
 
-class AddDevice extends StatelessWidget {
+class AddDevice extends StatelessWidget with NavigationStates {
   const AddDevice({Key? key}) : super(key: key);
 
   @override

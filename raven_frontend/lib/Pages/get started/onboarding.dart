@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key? key, key}) : super(key: key);
+  const OnboardingPage({Key? key, key2}) : super(key: key);
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();

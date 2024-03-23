@@ -1,11 +1,7 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:raven_frontend/Pages/Notifications.dart';
 import 'package:raven_frontend/Pages/add_device.dart';
 import 'package:raven_frontend/Pages/homePage.dart';
-
-
 
 enum NavigationEvents {
   HomePageClickedEvent,
@@ -16,7 +12,8 @@ enum NavigationEvents {
 abstract class NavigationStates {}
 
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
-  @override
+  NavigationBloc(NavigationStates initialState) : super(initialState);
+
   NavigationStates get initialState => HomePage();
 
   //@override
