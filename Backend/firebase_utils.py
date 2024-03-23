@@ -33,6 +33,8 @@ class FirebaseUtils:
 
         document_id = self.update_database(title, body, priority, data["videoUrl"])
         data["id"] = document_id
+        data["title"] = title
+        data["body"] = body
         devices = self.get_devices()
 
         for d in devices:

@@ -1,27 +1,26 @@
 from collections import deque
 from firebase_utils import FirebaseUtils
 from WebCam import WebCam
-
-import cv2
+from detection import EmergencyDetection
 
 
 def main():
     firebase = FirebaseUtils("ADiWRUE96Mjyzgx41HHh")
     camera = WebCam()
+    model = EmergencyDetection()
 
-    link = firebase.upload_clip("test.mp4", "b")
+    while True:
+        detected = model.analyze_frame()
+    # link = firebase.upload_clip("webcam_output.avi", "b")
 
-    print("Send Notification")
+    # print("Send Notification")
 
-    firebase.send_notification(
-        "You cant see me",
-        "John Cena",
-        {"videoUrl": link},
-        2,
-    )
-
-    # firebase.update_database("Camera 03", "Fall Detected!")
-    # firebase.get_devices()
+    # firebase.send_notification(
+    #     "Newklfd.fs",
+    #     "John Cena",
+    #     {"videoUrl": link},
+    #     2,
+    # )
 
 
 if __name__ == "__main__":
