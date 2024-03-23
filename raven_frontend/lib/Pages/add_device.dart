@@ -63,84 +63,6 @@ class AddDevice extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-        
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                // MyTextField('hello','name'),
-
-                TextField(
-                  style: const TextStyle(color: Color.fromARGB(255, 209, 209, 209)),
-                  decoration: InputDecoration(
-                    labelText: 'Server ID',           // change this field to unchangable
-                    labelStyle: const TextStyle(color: Colors.white),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                TextField(
-                  style: const TextStyle(color: Color.fromARGB(255, 209, 209, 209)),
-                  decoration: InputDecoration(
-                    labelText: 'Alertspace Name',
-                    hintText: 'Enter the desired Alertspace Name',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                TextField(
-                  style: const TextStyle(color: Color.fromARGB(255, 209, 209, 209)),
-                  decoration: InputDecoration(
-                    labelText: 'Username',
-                    hintText: 'Enter your username',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                TextField(
-                  style: const TextStyle(color: Color.fromARGB(255, 209, 209, 209)), // Set text color to offwhite
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    hintText: 'Enter the Password',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50.0), // Adjust the radius as needed to make it rounded
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                
-                ElevatedButton(
-                  onPressed: () {
-                    // Add the add button code here
-                  },
-                  style: ElevatedButton.styleFrom(fixedSize: const Size(150, 60)),
-                  child: const Text(
-                    'Add',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -190,6 +112,6 @@ class AddDevice extends StatelessWidget {
             ],
           ),
         ),
-      );
+      ));
   }
 }
