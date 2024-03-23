@@ -2,7 +2,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:video_player/video_player.dart';
-import 'package:flutter_sms/flutter_sms.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -34,15 +33,6 @@ class _VideoAppState extends State<VideoApp> {
 
   @override
   Widget build(BuildContext context) {
-    void sending_SMS(String msg, List<String> listReceipents) async {
-      String send_result =
-          await sendSMS(message: msg, recipients: listReceipents)
-              .catchError((err) {
-        print(err);
-      });
-      print(send_result);
-    }
-
     return Scaffold(
       // backgroundColor: Color.fromARGB(255, 41, 29, 46),
       backgroundColor: Color.fromARGB(204, 255, 255, 255),
@@ -164,10 +154,7 @@ class _VideoAppState extends State<VideoApp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      sending_SMS(
-                          'Hello, this the test message', ['0779073864']);
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                       padding: const EdgeInsets.symmetric(
