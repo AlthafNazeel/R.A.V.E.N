@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.only(right: 90,top: 20),
                     
                     child: Text(
-                      'Add Device',
+                      ' Add Device',
                       style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700, color: Colors.black),
                     ),
                   ),

@@ -57,7 +57,7 @@ class SignIn extends StatelessWidget {
                 const CustomTextField(
                   label: 'Network ID',
                   hint: 'Network id',
-                  icon: Icons.email_rounded,
+                  icon: Icons.perm_identity_sharp,
                   cursorColor: Colors.black,
                 ),
 
