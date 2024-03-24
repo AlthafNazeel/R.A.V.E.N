@@ -1,201 +1,179 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class SettingsPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SettingsPage(),
-    );
-  }
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class SettingsPage extends StatelessWidget {
-  // Define the desired color
-  final Color _backgroundColor = Color.fromARGB(255, 36, 32, 40); // b6bbc4
-
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 1,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.green,
+          ),
+        ),
       ),
-      backgroundColor:
-          _backgroundColor, // Use the defined color as the background color
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Main Headings
-              ListTile(
-                title: Text(
-                  'General',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+      body: Container(
+        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        child: ListView(
+          children: [
+            Text(
+              "Settings",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.person,
+                  color: Colors.green,
                 ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Account",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Divider(
+              height: 15,
+              thickness: 2,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            buildAccountOptionRow(context, "Change password"),
+            buildAccountOptionRow(context, "Content settings"),
+            buildAccountOptionRow(context, "Social"),
+            buildAccountOptionRow(context, "Language"),
+            buildAccountOptionRow(context, "Privacy and security"),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.volume_up_outlined,
+                  color: Colors.green,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "Notifications",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Divider(
+              height: 15,
+              thickness: 2,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            buildNotificationOptionRow("New for you", true),
+            buildNotificationOptionRow("Account activity", true),
+            buildNotificationOptionRow("Opportunity", false),
+            SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: OutlinedButton(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                onPressed: () {},
+                child: Text("SIGN OUT",
+                    style: TextStyle(
+                        fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
               ),
-              // Subheadings and Options under General
-              ListTile(
-                title: Text(
-                  'Language',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                trailing: DropdownButton<String>(
-                  onChanged: (String? newValue) {
-                    // Handle language selection
-                  },
-                  items: <String>[
-                    'English',
-                    'Spanish',
-                    'French',
-                    'German',
-                    'Chinese'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 17.0),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Location',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to location settings page
-                },
-              ),
-              // Main Headings
-              ListTile(
-                title: Text(
-                  'Account',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
-              ),
-              // Options under Account
-              ListTile(
-                title: Text(
-                  'Change Name',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to change name page
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Change Password',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to change password page
-                },
-              ),
-              // Options under System
-              ListTile(
-                title: Text(
-                  'System',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Current Server',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Show current server details
-                },
-              ),
-              // Options under Support
-              ListTile(
-                title: Text(
-                  'Support',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'About',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to about page
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Write a Review',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to review page
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'FAQ',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onTap: () {
-                  // Navigate to FAQ page
-                },
-              ),
-              // Centered Buttons
-              Center(
-                child: Column(
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Row buildNotificationOptionRow(String title, bool isActive) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600]),
+        ),
+        Transform.scale(
+            scale: 0.7,
+            child: CupertinoSwitch(
+              value: isActive,
+              onChanged: (bool val) {},
+            ))
+      ],
+    );
+  }
+
+  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(title),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        // Save settings
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(
-                            0xFF381B4A)), // Change button color to your desired hexadecimal value
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            EdgeInsets.symmetric(
-                                vertical: 16.0,
-                                horizontal: 32.0)), // Adjust padding
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            Size(200.0, 50.0)), // Adjust minimum size
-                      ),
-                      child: Text(
-                        'Save Settings',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Reset settings
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Color(
-                            0xFF381B4A)), // Change button color to your desired hexadecimal value
-                      ),
-                      child: Text(
-                        'Reset Settings',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0),
-                      ),
-                    ),
+                    Text("Option 1"),
+                    Text("Option 2"),
+                    Text("Option 3"),
                   ],
                 ),
+                actions: [
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Close")),
+                ],
+              );
+            });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
               ),
-            ],
-          ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+            ),
+          ],
         ),
       ),
     );

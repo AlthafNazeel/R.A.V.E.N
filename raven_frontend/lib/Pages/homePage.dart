@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget with NavigationStates {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
   @override
@@ -40,8 +40,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   String valueChoose = "";
-  List<String> listitem = ["home","workspace","villa"];
-  
+  List<String> listitem = ["home", "workspace", "villa"];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, '/signIn');
           },
         ),
-        actions: [   
+        actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
@@ -70,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         ],
         centerTitle: true,
       ),
-        // resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: Center(
         child: Container(
@@ -80,11 +79,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               // Pie Chart Container
               Container(
-                 decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: const Color.fromARGB(255, 219, 217, 217),
                 ),
-                padding: const EdgeInsets.all(20), 
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     // PieChart widget
@@ -98,7 +97,6 @@ class _HomePageState extends State<HomePage> {
                       chartValuesOptions: const ChartValuesOptions(
                         showChartValuesInPercentage: true,
                         showChartValues: false,
-                        
                       ),
                       legendOptions: const LegendOptions(showLegends: false),
                     ),
@@ -109,8 +107,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          width: 80, 
-                          height: 80, 
+                          width: 80,
+                          height: 80,
                           margin: const EdgeInsets.only(left: 25),
                           decoration: BoxDecoration(
                             color: const Color.fromRGBO(255, 76, 76, 1),
@@ -127,8 +125,8 @@ class _HomePageState extends State<HomePage> {
                           endIndent: 20,
                         ),
                         Container(
-                          width: 80, 
-                          height: 80, 
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
                             color: const Color.fromRGBO(240, 240, 65, 1),
                             borderRadius: BorderRadius.circular(10),
@@ -142,8 +140,8 @@ class _HomePageState extends State<HomePage> {
                           thickness: 5,
                         ),
                         Container(
-                          width: 80, 
-                          height: 80,  
+                          width: 80,
+                          height: 80,
                           margin: const EdgeInsets.only(right: 25),
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 95, 167, 108),
@@ -166,9 +164,11 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pushNamed(context, '/add_device');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:const Color.fromARGB(255, 101, 36, 120), // Set the button color
+                  backgroundColor: const Color.fromARGB(
+                      255, 101, 36, 120), // Set the button color
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // Set the border radius
+                    borderRadius:
+                        BorderRadius.circular(10), // Set the border radius
                   ),
                 ),
                 child: Container(
