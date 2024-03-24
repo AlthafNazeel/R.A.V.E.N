@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/components/TextFeild.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
+import 'package:raven_frontend/firebase_options.dart';
 import 'package:raven_frontend/navMenu.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotification();
   runApp(const MyApp());
 }
 

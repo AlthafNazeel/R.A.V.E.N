@@ -28,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Color.fromARGB(255, 71, 37, 88),
           ),
           onPressed: () {},
         ),
@@ -36,7 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           IconButton(
             icon: Icon(
               Icons.settings,
-              color: Colors.green,
+              color: Color.fromARGB(255, 71, 37, 88),
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
@@ -96,7 +96,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               width: 4,
                               color: Theme.of(context).scaffoldBackgroundColor,
                             ),
-                            color: Colors.green,
+                            color: Color.fromARGB(255, 71, 37, 88),
                           ),
                           child: Icon(
                             Icons.edit,
@@ -109,10 +109,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
+              buildTextField("Full Name", "Your Name", false),
+              buildTextField("E-mail", "yourmail@gmail.com", false),
               buildTextField("Password", "********", true),
-              buildTextField("Location", "TLV, Israel", false),
+              buildTextField("Location", "CMB,Sri Lanka", false),
               SizedBox(
                 height: 35,
               ),
@@ -127,16 +127,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             letterSpacing: 2.2,
                             color: Colors.black)),
                   ),
-                  ElevatedButton(
+                  OutlinedButton(
                     onPressed: () {},
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
+                    child: Text("SAVE",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2.2,
+                            color: Colors.black)),
+                  ),
                 ],
               )
             ],
