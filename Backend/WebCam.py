@@ -3,7 +3,7 @@ import time
 
 
 class WebCam:
-    def __init__(self) -> None:
+    def __init__(self):
         self.cap = cv2.VideoCapture(0)
         wCam, hCam = 640, 480
         wScr, hScr = 1920, 1080
@@ -14,19 +14,14 @@ class WebCam:
         self.cTime = 0
 
     def get_frame(self):
-
         success, img = self.cap.read()
-        img = cv2.flip(img, 1)
+        # img = cv2.flip(img, 1)
 
-        self.cTime = time.time()
-        fps = 1 / (self.cTime - self.pTime)
-        self.pTime = self.cTime
-        cv2.putText(
-            img, str(int(fps)), (540, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3
-        )
+        # self.cTime = time.time()
+        # fps = 1 / (self.cTime - self.pTime)
+        # self.pTime = self.cTime
+        # cv2.putText(
+        #     img, str(int(fps)), (540, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3
+        # )
 
-        resized_frame = cv2.resize(img, (64, 64))
-
-        normalized_frame = resized_frame / 255
-
-        return success, normalized_frame, img
+        return success, img
