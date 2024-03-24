@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         ],
         centerTitle: true,
       ),
-        // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       // backgroundColor: Color.fromARGB(255, 130, 48, 48),
       body: Center(
         child: Container(
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 60),
 
-                    // Text Containers with Vertical Dividers
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.black.withOpacity(0.2),
                                 spreadRadius: 2,
                                 blurRadius: 3,
-                                offset: Offset(6,8), // changes position of shadow
+                                offset: Offset(6,8), 
                               ),
                             ],
                           ),
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.black.withOpacity(0.2),
                                 spreadRadius: 2,
                                 blurRadius: 3,
-                                offset: Offset(6,8), // changes position of shadow
+                                offset: Offset(6,8), 
                               ),
                             ],
                           ),
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.black.withOpacity(0.2),
                                 spreadRadius: 2,
                                 blurRadius: 3,
-                                offset: Offset(6,8), // changes position of shadow
+                                offset: Offset(6,8), 
                               ),
                             ],
                           ),
@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 2,
                           blurRadius: 3,
-                          offset: Offset(6,8), // changes position of shadow
+                          offset: Offset(6,8), 
                         ),
                       ],
                     ),
@@ -205,8 +205,8 @@ class _HomePageState extends State<HomePage> {
                       child: IconButton(
                         icon: Icon(
                           Icons.add,
-                          size: 70, // Increase the size of the icon
-                          color: Colors.white, // Change the color of the icon
+                          size: 70, 
+                          color: Colors.white, 
                         ),
                         onPressed: () {
                           // Add your onPressed action here
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 2,
                           blurRadius: 3,
-                          offset: Offset(6,8), // changes position of shadow
+                          offset: Offset(6,8), 
                         ),
                       ],
                     ),
@@ -237,11 +237,11 @@ class _HomePageState extends State<HomePage> {
                           IconButton(
                             icon: Icon(
                               Icons.notifications,
-                              size: 50, // Increase the size of the icon
-                              color: Colors.white, // Change the color of the icon
+                              size: 50, 
+                              color: Colors.white, 
                             ),
                             onPressed: () {
-                              // Add your onPressed action for adding here
+                              // Add your onPressed action 
                             },
                           ),
                         ],
