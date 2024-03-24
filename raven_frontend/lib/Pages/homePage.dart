@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
 
 void main() {
@@ -39,8 +40,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   String valueChoose = "";
-  List<String> listitem = ["home","workspace","villa"];
-  
+  List<String> listitem = ["home", "workspace", "villa"];
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, '/signIn');
           },
         ),
-        actions: [   
+        actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
@@ -79,11 +79,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               // Pie Chart Container
               Container(
-                 decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Color.fromRGBO(65, 65, 65, 1),
                 ),
-                padding: const EdgeInsets.all(20), 
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     // PieChart widget
@@ -97,7 +97,6 @@ class _HomePageState extends State<HomePage> {
                       chartValuesOptions: const ChartValuesOptions(
                         showChartValuesInPercentage: true,
                         showChartValues: false,
-                        
                       ),
                       legendOptions: const LegendOptions(showLegends: false),
                     ),

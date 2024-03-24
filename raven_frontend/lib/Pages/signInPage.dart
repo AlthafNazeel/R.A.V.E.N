@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:raven_frontend/components/TextFeild.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
+import 'package:raven_frontend/navMenu.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignIn(), // Set SignIn as the home page
+    );
+  }
+}
 
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
@@ -29,7 +46,6 @@ class SignIn extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 150),
-
 
                 // Welcome message
                 Row(
@@ -61,7 +77,7 @@ class SignIn extends StatelessWidget {
                   cursorColor: Colors.black,
                 ),
 
-                const SizedBox(height: 30), 
+                const SizedBox(height: 30),
 
                 // Password field
                 const CustomTextField(
@@ -89,12 +105,13 @@ class SignIn extends StatelessWidget {
 
                 const SizedBox(height: 50),
 
-                // Sign In button               
+                // Sign In button
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the next page
-                    Navigator.pushNamed(
-                      context,'/homePage'
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => NavMenu()),
                     );
                   },
                   child: Container(
@@ -135,18 +152,17 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
 
-
                 const Expanded(
                   child: SizedBox(), // Takes up remaining space
                 ),
-                
-                // Register link
 
+                // Register link
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: const NavMenu(),
     );
   }
 }
