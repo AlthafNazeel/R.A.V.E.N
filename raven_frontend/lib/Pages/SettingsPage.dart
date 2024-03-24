@@ -11,7 +11,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Color.fromARGB(255, 27, 23, 27),
         elevation: 1,
         leading: IconButton(
           onPressed: () {
@@ -19,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: const Color.fromARGB(255, 0, 0, 0),
           ),
         ),
       ),
@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.green,
+                  color: Color.fromRGBO(76, 175, 80, 1),
                 ),
                 SizedBox(
                   width: 8,
@@ -56,9 +56,9 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Change password"),
+            buildAccountOptionRow(context, "Edit Profile"),
             buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
+            buildAccountOptionRow(context, "Location"),
             buildAccountOptionRow(context, "Language"),
             buildAccountOptionRow(context, "Privacy and security"),
             SizedBox(
@@ -94,13 +94,25 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Center(
               child: OutlinedButton(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                    EdgeInsets.symmetric(horizontal: 40),
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
                 onPressed: () {},
-                child: Text("SIGN OUT",
-                    style: TextStyle(
-                        fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
+                child: Text(
+                  "SIGN OUT",
+                  style: TextStyle(
+                    fontSize: 16,
+                    letterSpacing: 2.2,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             )
           ],
@@ -147,7 +159,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                 ),
                 actions: [
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
