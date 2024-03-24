@@ -5,6 +5,7 @@ import os
 import tensorflow_hub as hub
 import time
 from firebase_utils import FirebaseUtils
+import uuid
 
 
 class EmergencyDetection:
@@ -15,6 +16,7 @@ class EmergencyDetection:
         self.movenet = self.model.signatures["serving_default"]
         self.cap = cv2.VideoCapture(0)
         self.emergency_detected = False
+        self_event_counter = 1
         self.last_notification_time = time.time()
         self.EDGES = {
             (0, 1): "m",
@@ -112,8 +114,7 @@ class EmergencyDetection:
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
 
-        # self.cap.release()
-        # out.release()
+
         print("Video Saved")
 
     def process_frame(self):
@@ -135,20 +136,22 @@ class EmergencyDetection:
 
         if self.detect_emergency(keypoints_with_scores):
             print("Emergency detected (hands raised)")
+            event_id = str(uuid.uuid4())
             print("Send Notification")
             self.firebase.send_notification(
-                "Sulaimaaaaaaaaan",
+                f"Emergency Detected {self_event_counter}",
                 "Camera 03",
                 {
                     "videoUrl": "https://storage.googleapis.com/raven-2e2e0.appspot.com/"
-                    + "abc"
+                    + event_id
                 },
                 2,
             )
             print("Record Video")
             self.record_webcam()
             print("Upload Video")
-            self.firebase.upload_clip("webcam_output.avi", "abc")
+            self.firebase.upload_clip("webcam_output.avi", event_id)
+            self_event_counter +=1
 
         cv2.imshow("MultiPose Estimation", frame)
 
