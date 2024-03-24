@@ -55,8 +55,8 @@ class SignIn extends StatelessWidget {
 
                 // Email text field
                 const CustomTextField(
-                  label: 'Email',
-                  hint: 'Username or e-mail',
+                  label: 'Network ID',
+                  hint: 'Network id',
                   icon: Icons.email_rounded,
                   cursorColor: Colors.black,
                 ),
