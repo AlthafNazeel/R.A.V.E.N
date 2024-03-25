@@ -125,9 +125,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           borderRadius: BorderRadius.circular(7), color: primaryColor),
       child: TextButton(
         onPressed: () {
-          setState(() {
-            currentIndex != controller.items.length - 1 ? currentIndex++ : null;
-          });
+          Navigator.pushNamed(context, '/signInPage');
         },
         child: Text(
           currentIndex == controller.items.length - 1

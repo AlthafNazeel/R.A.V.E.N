@@ -30,20 +30,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Color.fromARGB(255, 71, 37, 88),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Color.fromARGB(255, 71, 37, 88),
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsPage()));
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(
+        //       Icons.settings,
+        //       color: Color.fromARGB(255, 71, 37, 88),
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (BuildContext context) => SettingsPage()));
+        //     },
+        //   ),
+        // ],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -120,7 +122,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,

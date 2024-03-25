@@ -115,7 +115,7 @@ class SignIn extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the next page
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => NavMenu()),
                     );
@@ -149,15 +149,7 @@ class SignIn extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 // Add local device message
-                const Text(
-                  'ADD LOCAL DEVICE',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-
+               
                 const Expanded(
                   child: SizedBox(), // Takes up remaining space
                 ),
@@ -168,7 +160,7 @@ class SignIn extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const NavMenu(),
+      // bottomNavigationBar: const NavMenu(),
     );
   }
 }

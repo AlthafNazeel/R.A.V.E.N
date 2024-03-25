@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'package:raven_frontend/api/firebase_api.dart';
 
 void main() {
@@ -40,21 +39,14 @@ class AddDevice extends StatelessWidget {
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Center(
+          backgroundColor: const Color.fromARGB(255, 41, 29, 46),
+          title: Center(
             child: Text(
-              'ADD SERVER',
+              'ADD SERVER       ',
               style: TextStyle(color: Colors.white),
             ),
           ),
-          leading: BackButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/homePage');
-            },
-          ),
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: const Color.fromARGB(255, 41, 29, 46),
         ),
         body: Container(
           decoration: const BoxDecoration(

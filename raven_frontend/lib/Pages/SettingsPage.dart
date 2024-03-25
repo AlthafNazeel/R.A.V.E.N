@@ -205,17 +205,9 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 27, 23, 27),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0, // Remove elevation for a flat app bar
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white, // Match app bar title text color
-          ),
-        ),
+        
       ),
       body: Container(
         padding: EdgeInsets.all(16),

@@ -169,11 +169,12 @@ class _VideoAppState extends State<VideoApp> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context); // This will pop the current route and go back to the previous screen
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 73, vertical: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 73, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
