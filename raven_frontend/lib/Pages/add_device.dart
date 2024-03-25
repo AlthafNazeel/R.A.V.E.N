@@ -43,7 +43,7 @@ class AddDevice extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'ADD SERVER',
+            'ADD SERVER          ',
             style: TextStyle(color: Colors.white),
           ),
         ),

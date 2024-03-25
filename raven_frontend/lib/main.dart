@@ -4,6 +4,7 @@ import 'package:raven_frontend/Pages/Navbar/navbar.dart';
 import 'package:raven_frontend/Pages/SettingsPage.dart';
 import 'package:raven_frontend/Pages/get%20started/onboarding.dart';
 import 'package:raven_frontend/Pages/alert.dart';
+import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/signInPage.dart';
 //import 'package:raven_frontend/Pages/homePage.dart';
 import 'package:raven_frontend/Pages/add_device.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp( 
 
       debugShowCheckedModeBanner: false,
-      home: NotificationsPageE(),
+      home:NotificationsPageE(),
       navigatorKey: navigatorKey,
       routes: {
         // '/navbar':(context) => NavBar(),
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         // '/SettingsPage': (context) => Settings(),
         '/signInPage': (context) => SignIn(),
         // '/homePage': (context) => HomePage(),
-        '/add_device': (context) => const AddDevice(),
+        // '/add_device': (context) => const AddDevice(),
          // ignore: prefer_const_constructors
         //  '/GetStartedPage': (context) => OnboardingScreen(),
         // '/Notifications': (context) => NotificationsPage(),

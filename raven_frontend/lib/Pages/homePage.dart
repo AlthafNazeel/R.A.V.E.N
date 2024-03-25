@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: Center(
         child: Container(
-          color: const Color.fromARGB(255, 16, 16, 16),
+          color: Color.fromARGB(255, 255, 255, 255),
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                  decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: const Color.fromARGB(255, 219, 217, 217),
+                  color: Color.fromARGB(255, 196, 196, 196),
                 ),
                 padding: const EdgeInsets.all(20), 
                 child: Column(
@@ -112,15 +112,16 @@ class _HomePageState extends State<HomePage> {
                           height: 80, 
                           margin: const EdgeInsets.only(left: 25),
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 76, 76, 1),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color.fromRGBO(255, 76, 76, 1) , width: 5.0)
                           ),
                           child: Center(
                             child: Text("11", style: AppFonts.piechart()),
                           ),
                         ),
                         const VerticalDivider(
-                          color: Color.fromARGB(255, 123, 18, 18),
+                          color: Color.fromARGB(255, 0, 0, 0),
                           thickness: 10,
                           indent: 10,
                           endIndent: 20,
@@ -129,8 +130,9 @@ class _HomePageState extends State<HomePage> {
                           width: 80, 
                           height: 80, 
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(240, 240, 65, 1),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color.fromRGBO(240, 240, 65, 1) , width: 5.0)
                           ),
                           child: Center(
                             child: Text("8", style: AppFonts.piechart()),
@@ -138,15 +140,16 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const VerticalDivider(
                           color: Color.fromARGB(255, 0, 0, 0),
-                          thickness: 5,
+                          thickness: 15,
                         ),
                         Container(
                           width: 80, 
                           height: 80,  
                           margin: const EdgeInsets.only(right: 25),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 95, 167, 108),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color.fromARGB(255, 95, 167, 108), width: 5.0)
                           ),
                           child: Center(
                             child: Text("5", style: AppFonts.piechart()),
