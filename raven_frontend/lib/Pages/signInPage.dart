@@ -143,23 +143,6 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 15),
-
-                // OR separator
-                const Text(
-                  '-- or --',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 15),
-                // Add local device message
-               
-                const Expanded(
-                  child: SizedBox(), // Takes up remaining space
-                ),
-
-                // Register link
               ],
             ),
           ),
