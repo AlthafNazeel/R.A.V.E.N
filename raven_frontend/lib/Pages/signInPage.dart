@@ -143,6 +143,12 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 15),
+
+               
+                const Expanded(
+                  child: SizedBox(), // Takes up remaining space
+                ),
+
               ],
             ),
           ),
