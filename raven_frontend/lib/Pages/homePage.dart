@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                           width: 80, 
                           height: 80, 
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 76, 76, 1),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         const VerticalDivider(
-                          color: Color.fromARGB(255, 123, 18, 18),
+                          color: Color.fromARGB(255, 0, 0, 0),
                           thickness: 10,
                           indent: 10,
                           endIndent: 20,
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                           width: 80, 
                           height: 80,
                           decoration: BoxDecoration(
-                            color: const Color.fromRGBO(240, 240, 65, 1),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -152,13 +152,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const VerticalDivider(
                           color: Color.fromARGB(255, 0, 0, 0),
-                          thickness: 5,
+                          thickness: 15,
                         ),
                         Container(
                           width: 80, 
                           height: 80,  
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 95, 167, 108),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
