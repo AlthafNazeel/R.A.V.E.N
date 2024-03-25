@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
 
 void main() {
@@ -46,13 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pushNamed(context, '/signIn');
-          },
-        ),
+        backgroundColor: Color.fromARGB(255, 209, 204, 204),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -208,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white, 
                         ),
                         onPressed: () {
-                          // Add your onPressed action here
+                          Navigator.pushNamed(context, '/add_device');
                         },
                       ),
                     ),
@@ -240,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.white, 
                             ),
                             onPressed: () {
-                              // Add your onPressed action 
+                              Navigator.pushNamed(context, '/Notifications');
                             },
                           ),
                         ],
@@ -275,5 +268,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ), 
     );
+
   } 
 }
