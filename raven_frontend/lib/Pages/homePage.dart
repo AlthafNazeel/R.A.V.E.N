@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:raven_frontend/Pages/Navbar/navigation_bloc.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
 
 void main() {
@@ -39,8 +40,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   String valueChoose = "";
-  List<String> listitem = ["home","workspace","villa"];
-  
+  List<String> listitem = ["home", "workspace", "villa"];
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, '/signIn');
           },
         ),
-        actions: [   
+        actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
@@ -69,8 +69,8 @@ class _HomePageState extends State<HomePage> {
         ],
         centerTitle: true,
       ),
-        // resizeToAvoidBottomInset: false,
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      resizeToAvoidBottomInset: false,
+      // backgroundColor: Color.fromARGB(255, 130, 48, 48),
       body: Center(
         child: Container(
           color: Color.fromARGB(255, 255, 255, 255),
@@ -79,11 +79,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               // Pie Chart Container
               Container(
-                 decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 196, 196, 196),
+                  color: Color.fromRGBO(65, 65, 65, 1),
                 ),
-                padding: const EdgeInsets.all(20), 
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     // PieChart widget
@@ -97,24 +97,29 @@ class _HomePageState extends State<HomePage> {
                       chartValuesOptions: const ChartValuesOptions(
                         showChartValuesInPercentage: true,
                         showChartValues: false,
-                        
                       ),
                       legendOptions: const LegendOptions(showLegends: false),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 60),
 
-                    // Text Containers with Vertical Dividers
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           width: 80, 
                           height: 80, 
-                          margin: const EdgeInsets.only(left: 25),
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Color.fromRGBO(255, 76, 76, 1) , width: 5.0)
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 3,
+                                offset: Offset(6,8), 
+                              ),
+                            ],
                           ),
                           child: Center(
                             child: Text("11", style: AppFonts.piechart()),
@@ -128,11 +133,18 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           width: 80, 
-                          height: 80, 
+                          height: 80,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Color.fromRGBO(240, 240, 65, 1) , width: 5.0)
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 3,
+                                offset: Offset(6,8), 
+                              ),
+                            ],
                           ),
                           child: Center(
                             child: Text("8", style: AppFonts.piechart()),
@@ -145,11 +157,17 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           width: 80, 
                           height: 80,  
-                          margin: const EdgeInsets.only(right: 25),
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Color.fromARGB(255, 95, 167, 108), width: 5.0)
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 3,
+                                offset: Offset(6,8), 
+                              ),
+                            ],
                           ),
                           child: Center(
                             child: Text("5", style: AppFonts.piechart()),
@@ -160,34 +178,102 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
 
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to the next page
-                  Navigator.pushNamed(context, '/add_device');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:const Color.fromARGB(255, 101, 36, 120), // Set the button color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // Set the border radius
+              const SizedBox(height: 150),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 100, 
+                    height: 100, 
+                    margin: const EdgeInsets.only(right: 90),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(127, 17, 224, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                          offset: Offset(6,8), 
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.add,
+                          size: 70, 
+                          color: Colors.white, 
+                        ),
+                        onPressed: () {
+                          // Add your onPressed action here
+                        },
+                      ),
+                    ),
                   ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 70,
-                    vertical: 8,
+                                    
+                  Container(
+                    width: 100, 
+                    height: 100, 
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(127, 17, 224, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                          offset: Offset(6,8), 
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications,
+                              size: 50, 
+                              color: Colors.white, 
+                            ),
+                            onPressed: () {
+                              // Add your onPressed action 
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    'Add Device',
-                    style: AppFonts.ButtonFont(),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 90,top: 20),
+                    
+                    child: Text(
+                      ' Add Device',
+                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700, color: Colors.black),
+                    ),
                   ),
-                ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Notification',
+                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700, color: Colors.black),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-      ),
+      ), 
     );
-  }
+  } 
 }

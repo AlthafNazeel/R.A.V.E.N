@@ -1,126 +1,146 @@
-import 'package:flutter/material.dart';
 
-void main() {
-  runApp( const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Settings(),
-  ));
+import 'package:flutter/material.dart';
+import 'package:raven_frontend/Pages/profileEdit.dart';
+
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
-
-  // final userNameController = TextEditingController();
-  // final paswordController = TextEditingController();
-
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 225, 225, 225),
-
-        // title: Text('Settings',
-        // style: TextStyle(
-        //   fontSize: 25,
-        //   fontWeight: FontWeight.w800
-
-        // ),
-        // ),
-        leading: IconButton (
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed:(){
-              Navigator.pushNamed(context,'/homePage'
-              );
-            },
-            ),
-            
-        centerTitle: true,
-
+        backgroundColor: const Color.fromARGB(255, 27, 23, 27),
+        elevation: 0, // Remove elevation for a flat app bar
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white, 
+          ),
+        ),
       ),
-
-      backgroundColor: const Color.fromARGB(255, 225, 225, 225),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15.0, left: 20.0, right: 15.0,bottom: 30.0),
-        child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [          
-                  const Text('Settings',
-                    style: TextStyle(
-                      fontSize: 35 ,
-                      fontWeight: FontWeight.w800,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Account',
-                    style: TextStyle(
-                      fontSize: 20 ,
-                      fontWeight: FontWeight.w800,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ) ,
-                  ),
-                  const SizedBox(height: 80),
-                  const Text('General',
-                    style: TextStyle(
-                      fontSize: 20 ,
-                      fontWeight: FontWeight.w800,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ) ,
-                  ),
-
-                AccountOption(context,'Language'),
-                // const SizedBox(height: 20),//space box from top
-                // AccountOption(context,'Appearance'),
-                // const SizedBox(height: 20),//space box from top
-                AccountOption(context,'Notification'),
-                // const SizedBox(height: 20),//space box from top
-                AccountOption(context,'Connection'),
-                 const Expanded(
-                  child: SizedBox(), // Takes up remaining space
-                ),
-                AccountOption(context,'Logout'),
-        
-              ],             
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: ListView(
+          children: [
+            Text(
+              "Settings",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
+            SizedBox(height: 40),
+            buildHeadingRow("Account"),
+            Divider(height: 15, thickness: 2),
+            SizedBox(height: 10),
+            buildAccountOptionRow(context, "Edit Profile", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfilePage()),
+              );
+            }),
+            buildAccountOptionRow(context, "Content settings", () {}),
+            buildAccountOptionRow(context, "Location", () {}),
+            buildAccountOptionRow(context, "Language", () {}),
+            buildAccountOptionRow(context, "Privacy and security", () {}),
+            SizedBox(height: 40),
+            buildHeadingRow("Support"),
+            Divider(height: 15, thickness: 2),
+            SizedBox(height: 10),
+            buildNotificationOptionRow("New for you", true),
+            buildAccountOptionRow(context, "FAQ", () {}),
+            buildAccountOptionRow(context, "Write us a review", () {}),
+            buildAccountOptionRow(context, "About", () {}),
+            SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Save changes
+                  },
+                  child: Text('Save Changes'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Discard changes
+                  },
+                  child: Text('Discard Changes'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-GestureDetector AccountOption(BuildContext context, String title) {
-  return GestureDetector(
-    
-    child: Padding(
-      padding: const EdgeInsets.only(left: 0, right: 10),
-      child: Container(
-        decoration: const BoxDecoration(
-          // color: Color.fromARGB(255, 101, 36, 120),
-          // borderRadius: BorderRadius.circular(12.0), // Adjust the border radius as needed
+  Row buildHeadingRow(String title) {
+    return Row(
+      children: [
+        Icon(
+          Icons.person,
+          color: Colors.green,
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromARGB(255, 101, 36, 120),
-                ),
-              ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: Color.fromARGB(255, 101, 36, 120),
-                size: 18,
-              ),
-            ],
+        SizedBox(width: 8),
+        Text(
+          title,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+
+  Row buildNotificationOptionRow(String title, bool isActive) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey[600],
           ),
         ),
+        Transform.scale(
+          scale: 0.7,
+          child: Switch(
+            value: isActive,
+            onChanged: (bool val) {},
+          ),
+        )
+      ],
+    );
+  }
+
+  GestureDetector buildAccountOptionRow(
+      BuildContext context, String title, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

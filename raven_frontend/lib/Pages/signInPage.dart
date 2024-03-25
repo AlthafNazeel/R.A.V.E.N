@@ -1,6 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:raven_frontend/api/firebase_api.dart';
 import 'package:raven_frontend/components/TextFeild.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
+import 'package:raven_frontend/firebase_options.dart';
+import 'package:raven_frontend/navMenu.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotification();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignIn(), // Set SignIn as the home page
+    );
+  }
+}
 
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
@@ -30,7 +53,6 @@ class SignIn extends StatelessWidget {
               children: [
                 const SizedBox(height: 150),
 
-
                 // Welcome message
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -55,13 +77,13 @@ class SignIn extends StatelessWidget {
 
                 // Email text field
                 const CustomTextField(
-                  label: 'Email',
-                  hint: 'Username or e-mail',
-                  icon: Icons.email_rounded,
+                  label: 'Network ID',
+                  hint: 'Network id',
+                  icon: Icons.perm_identity_sharp,
                   cursorColor: Colors.black,
                 ),
 
-                const SizedBox(height: 30), 
+                const SizedBox(height: 30),
 
                 // Password field
                 const CustomTextField(
@@ -89,12 +111,13 @@ class SignIn extends StatelessWidget {
 
                 const SizedBox(height: 50),
 
-                // Sign In button               
+                // Sign In button
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the next page
-                    Navigator.pushNamed(
-                      context,'/homePage'
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => NavMenu()),
                     );
                   },
                   child: Container(
@@ -135,18 +158,17 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
 
-
                 const Expanded(
                   child: SizedBox(), // Takes up remaining space
                 ),
-                
-                // Register link
 
+                // Register link
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: const NavMenu(),
     );
   }
 }
