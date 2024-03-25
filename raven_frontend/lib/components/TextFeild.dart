@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:raven_frontend/components/AppFonts.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
   final String label;
   final String hint;
   final IconData icon;
@@ -9,6 +10,7 @@ class CustomTextField extends StatelessWidget {
 
   const CustomTextField({
     Key? key,
+    required this.controller,
     required this.label,
     required this.hint,
     required this.icon,
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
       //   ],
       // ),
       child: TextField(
+        controller: controller,
         cursorColor: cursorColor,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
@@ -43,7 +46,8 @@ class CustomTextField extends StatelessWidget {
           ),
           prefixIcon: Icon(icon, color: cursorColor, size: 18),
           enabledBorder: const UnderlineInputBorder(
-            borderSide : BorderSide (color: Color.fromARGB(255, 0, 0, 0), width: 2),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
             // borderRadius: BorderRadius.circular(1.0),
           ),
           floatingLabelStyle: TextStyle(

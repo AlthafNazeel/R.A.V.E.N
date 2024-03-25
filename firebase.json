@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "raven_frontend/build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "raven_frontend/build/web/index.html"
+      }
+    ]
+  }
+}
