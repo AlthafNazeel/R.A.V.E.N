@@ -28,8 +28,9 @@ class MyApp extends StatelessWidget {
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
 
+  final FirebaseApi api = FirebaseApi();
   // Controllers for handling user input
-  final userNameController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -76,7 +77,8 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 100),
 
                 // Email text field
-                const CustomTextField(
+                CustomTextField(
+                  controller: userNameController,
                   label: 'Network ID',
                   hint: 'Network id',
                   icon: Icons.perm_identity_sharp,
@@ -86,7 +88,8 @@ class SignIn extends StatelessWidget {
                 const SizedBox(height: 30),
 
                 // Password field
-                const CustomTextField(
+                CustomTextField(
+                  controller: passwordController,
                   label: 'Password',
                   hint: 'Enter your password',
                   icon: Icons.lock_rounded,
@@ -115,6 +118,8 @@ class SignIn extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the next page
+                    api.addSystem(
+                        userNameController.text, passwordController.text);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => NavMenu()),
